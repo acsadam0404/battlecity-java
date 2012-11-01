@@ -1,0 +1,12 @@
+﻿<animation>
+	<image extension="png">
+		<mode>spritesheet</mode>
+		<file>images\\expo.png</file>
+		<count>7</count>
+		<perrow>7</perrow>
+		<rows>0</rows>
+		<cols>0</cols>
+		<width>32</width>
+		<height>32</height>
+	</image>
+</animation>

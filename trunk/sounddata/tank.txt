@@ -1,0 +1,6 @@
+tankfire1
+sounds/tankfire1.wav
+tankfire2
+sounds/tankfire2.wav
+tankmove
+sounds/tanksoundhalfminute.wav

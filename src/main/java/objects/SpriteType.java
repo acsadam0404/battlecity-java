@@ -1,5 +1,10 @@
 package objects;
 
+/**
+ * A registry használatához a sprite-oknak meg kell tudniuk mondani magukról milyen típusúak.
+ * @author Ács Ádám
+ *
+ */
 public enum SpriteType {
 	PLAYER_TANK,
 	PLAYER_BULLET,

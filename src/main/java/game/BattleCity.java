@@ -18,8 +18,6 @@ import objects.EInitException;
  */
 public final class BattleCity extends Game implements KeyListener {
 	private AbstractGameState playState;
-	private AbstractGameState exitState;
-	private AbstractGameState menuState;
 	private AbstractGameState optionsState;
 
 	private AbstractGameState state;
@@ -34,21 +32,11 @@ public final class BattleCity extends Game implements KeyListener {
 		setIgnoreRepaint(true);
 		
 		optionsState = new OptionsState(this);
-		exitState = new ExitState(this);
 		playState = new PlayState(this);
-		menuState = new MenuState(this);
 	}
 
 	public AbstractGameState getPlayState() {
 		return playState;
-	}
-
-	public AbstractGameState getExitState() {
-		return exitState;
-	}
-
-	public AbstractGameState getMenuState() {
-		return menuState;
 	}
 
 	public AbstractGameState getOptionsState() {
@@ -73,8 +61,6 @@ public final class BattleCity extends Game implements KeyListener {
 	public void init() {
 		try {
 			playState.init();
-			menuState.init();
-			exitState.init();
 			optionsState.init();
 		} catch (EInitException initEx) {
 			initEx.printStackTrace();

@@ -1,5 +1,10 @@
 package components.animation;
 
+/**
+ * 
+ * @author Ács Ádám
+ *
+ */
 public class ENoAnimationFoundException extends RuntimeException {
 	private String message;
 	public ENoAnimationFoundException(String name) {

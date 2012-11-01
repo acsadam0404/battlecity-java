@@ -10,6 +10,11 @@ import java.util.List;
 import objects.EInitException;
 import objects.IGameLoop;
 
+/**
+ * A képernyõk õsosztálya.
+ * @author Ács Ádám
+ *
+ */
 public abstract class AbstractGameState implements IGameLoop, IKeyboardControlled {
 	protected BattleCity game;
 

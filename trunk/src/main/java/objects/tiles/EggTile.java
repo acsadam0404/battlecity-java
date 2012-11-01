@@ -8,6 +8,11 @@ import objects.SpriteType;
 import components.animation.Animation;
 import components.animation.AnimationFactory;
 
+/**
+ * 
+ * @author Ács Ádám
+ *
+ */
 public class EggTile extends Tile {
 	public EggTile(int posX, int posY) {
 		super(posX, posY);

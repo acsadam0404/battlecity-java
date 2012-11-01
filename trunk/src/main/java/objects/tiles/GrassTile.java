@@ -10,6 +10,11 @@ import objects.SpriteType;
 import components.animation.Animation;
 import components.animation.AnimationFactory;
 
+/**
+ * 
+ * @author Ács Ádám
+ *
+ */
 public class GrassTile extends Tile {
 	public GrassTile(int posX, int posY) {
 		super(posX, posY);

@@ -5,6 +5,11 @@ import math.Vector2;
 
 import components.collision.Collision;
 
+/**
+ * 
+ * @author Ács Ádám
+ *
+ */
 public abstract class EnemyTank extends Tank {
 	public EnemyTank(Vector2 pos) {
 		super(pos);

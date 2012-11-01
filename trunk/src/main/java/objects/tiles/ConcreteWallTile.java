@@ -1,21 +1,26 @@
 package objects.tiles;
 
-import game.Config;
 import game.Registry;
 
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import objects.*;
+import objects.EInitException;
+import objects.Sprite;
+import objects.SpriteType;
 import objects.bullets.Bullet;
 
 import components.collision.Collision;
 
+/**
+ * 
+ * @author Ács Ádám
+ *
+ */
 public class ConcreteWallTile extends WallTile {
 	public ConcreteWallTile(int posX, int posY) {
 		super(posX, posY);

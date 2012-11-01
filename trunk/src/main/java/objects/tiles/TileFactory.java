@@ -2,6 +2,11 @@ package objects.tiles;
 
 import objects.EInitException;
 
+/**
+ * 
+ * @author Ács Ádám
+ *
+ */
 public final class TileFactory {
 	private TileFactory() {
 		super(); /* private constructor */

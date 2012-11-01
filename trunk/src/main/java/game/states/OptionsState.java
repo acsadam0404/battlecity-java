@@ -20,7 +20,7 @@ import components.audio.AudioData;
 import components.audio.AudioHandler;
 
 /**
- * 
+ * A menü képernyõ.
  * @author Ács Ádám
  *
  */

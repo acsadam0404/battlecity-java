@@ -1,0 +1,10 @@
+﻿<animation>
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\eggx.png</file>
+		<width>100</width>
+		<height>106</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+</animation>

@@ -1,0 +1,18 @@
+<animation>
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\bonus\\superbullet.png</file>
+		<width>40</width>
+		<height>40</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+		<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\empty.png</file>
+		<width>40</width>
+		<height>40</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+</animation>

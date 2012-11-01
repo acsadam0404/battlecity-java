@@ -1,0 +1,10 @@
+﻿<animation>
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\bullet.png</file>
+		<width>8</width>
+		<height>8</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+</animation>

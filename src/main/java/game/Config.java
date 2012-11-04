@@ -37,7 +37,7 @@ public final class Config {
 
 	public static final Rectangle OFFSCREEN_RECT = new Rectangle(-1000, -1000, 0, 0);
 
-	public static final boolean AUDIO_ON = false;
+	public static boolean AUDIO_ON = true;
 	
 	public static final boolean AI_ON = true;
 

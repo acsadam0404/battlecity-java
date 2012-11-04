@@ -13,6 +13,7 @@ import javax.swing.JFrame;
  * @version 2012.08.09
  */
 public class Program extends JFrame {
+	private static final String NOSOUND_ARG = "-nosound";
 	static BattleCity game;
 
 	public Program() {
@@ -24,6 +25,12 @@ public class Program extends JFrame {
 	 * @param args
 	 */
 	public static void main(String args[]) {
+		if (args.length > 0) {
+			if (NOSOUND_ARG.equalsIgnoreCase(args[0])) {
+				Config.AUDIO_ON = false;
+			}
+		}
+		
 		Program program = new Program();
 		game = new BattleCity(program);
 		game.init();

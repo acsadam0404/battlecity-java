@@ -1,7 +1,9 @@
 package player;
 
 import java.awt.Graphics;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import objects.Direction;
 import objects.EInitException;
@@ -14,18 +16,16 @@ import objects.units.tanks.Tank;
  */
 public class AIPlayer extends Player {
 	protected LocalPlayer player;
-	protected List<Tank> tanks = new ArrayList<>();
-	
+	protected List<Tank> tanks = new ArrayList<Tank>();
+
 	public List<Tank> getTanks() {
 		return tanks;
 	}
 
-	
 	public AIPlayer(LocalPlayer player) {
 		super();
 		this.player = player;
 	}
-	
 
 	public void addTank(Tank tank) throws EInitException {
 		Tank t = tank;
@@ -34,7 +34,6 @@ public class AIPlayer extends Player {
 		tanks.add(t);
 	}
 
-	
 	/**
 	 * az ai implementációja
 	 */
@@ -42,8 +41,8 @@ public class AIPlayer extends Player {
 	public void update(long gameTime) {
 		for (int i = tanks.size() - 1; i >= 0; i--) {
 			Tank tank = tanks.get(i);
-			
-			if (tank.getState().equals(Tank.State.DEAD)){
+
+			if (tank.getState().equals(Tank.State.DEAD)) {
 				getTanks().remove(tank);
 				continue;
 			}
@@ -53,29 +52,26 @@ public class AIPlayer extends Player {
 
 			if (rndInt < 3) {
 				tank.setDirection(Direction.SOUTH);
-			}
-			else if (rndInt < 6) {
+			} else if (rndInt < 6) {
 				tank.setDirection(Direction.EAST);
+			} else if (rndInt < 9) {
+				tank.setDirection(Direction.WEST);
+			} else if (rndInt < 12) {
+				tank.setDirection(Direction.NORTH);
 			}
-			else if (rndInt < 9) {
-				tank.setDirection( Direction.WEST);
-			}
-			else if (rndInt < 12) {
-				tank.setDirection( Direction.NORTH);
-			}
-			
+
 			tank.moveInDirection();
-			
+
 			rndInt = rnd.nextInt(101); /* rnd % */
-			
+
 			if (rndInt < 10) {
 				tank.fire();
 			}
-			
+
 			tank.update(gameTime);
 		}
 	}
-	
+
 	@Override
 	public void draw(Graphics g) {
 		for (Tank tank : tanks) {
@@ -85,9 +81,8 @@ public class AIPlayer extends Player {
 
 	@Override
 	public void init() {
-		
-	}
 
+	}
 
 	@Override
 	public void reset() {

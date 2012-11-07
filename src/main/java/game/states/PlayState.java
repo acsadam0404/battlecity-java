@@ -63,7 +63,7 @@ public class PlayState extends AbstractGameState {
 	private AudioHandler audioHandler;
 	private ScoreHandler scoreHandler;
 
-	private Map<Integer, MapData> levels = new HashMap<>();
+	private Map<Integer, MapData> levels = new HashMap<Integer, MapData>();
 
 	public PlayState(BattleCity game) {
 		super(game);
@@ -91,7 +91,7 @@ public class PlayState extends AbstractGameState {
 		gameOverEnemyWonLabel = new GLabel("Vesztettél!", 200, 200);
 		gameOverEnemyWonLabel.setColor(Color.RED);
 		gameOverEnemyWonLabel.setFontSize(20);
-		
+
 		AudioData audioData = new AudioData("sounddata\\play.txt");
 		audioHandler = new AudioHandler(audioData);
 
@@ -122,7 +122,7 @@ public class PlayState extends AbstractGameState {
 				gameOverYouWon = true;
 				paused = true;
 			}
-			
+
 			TileMap.singleton().update(gameTime);
 			player.update(gameTime);
 			enemyManager.update(gameTime);
@@ -139,14 +139,14 @@ public class PlayState extends AbstractGameState {
 		timeLabel.draw(g);
 
 		TileMap.singleton().drawFirstLayer(g);
-		
+
 		player.draw(g);
 		enemyManager.draw(g);
-		
+
 		TileMap.singleton().drawSecondLayer(g);
 
 		bonusManager.draw(g);
-		
+
 		if (gameOverYouWon) {
 			gameOverYouWonLabel.draw(g);
 		} else if (gameOverEnemyWon) {
@@ -185,8 +185,7 @@ public class PlayState extends AbstractGameState {
 			if (e.getKeyCode() == KeyEvent.VK_P && !gameOverYouWon && !gameOverEnemyWon) {
 				if (paused) {
 					paused = false;
-				}
-				else {
+				} else {
 					paused = true;
 				}
 			}

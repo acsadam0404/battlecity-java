@@ -1,11 +1,14 @@
 package game;
 
-import game.states.*;
+import game.states.AbstractGameState;
+import game.states.OptionsState;
+import game.states.PlayState;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import objects.EInitException;
 
@@ -21,8 +24,8 @@ public final class BattleCity extends Game implements KeyListener {
 	private AbstractGameState optionsState;
 
 	private AbstractGameState state;
-	
-	private List<KeyEvent> keys = new ArrayList<>();
+
+	private List<KeyEvent> keys = new ArrayList<KeyEvent>();
 
 	public BattleCity(Program program) {
 		super(program);
@@ -30,7 +33,7 @@ public final class BattleCity extends Game implements KeyListener {
 		requestFocus();
 		setLayout(null);
 		setIgnoreRepaint(true);
-		
+
 		optionsState = new OptionsState(this);
 		playState = new PlayState(this);
 	}
@@ -50,7 +53,7 @@ public final class BattleCity extends Game implements KeyListener {
 		this.removeAll(); /* leszedi az összes componenst */
 		state.onSet();
 		this.state = state;
-		
+
 	}
 
 	/**
@@ -66,7 +69,7 @@ public final class BattleCity extends Game implements KeyListener {
 			initEx.printStackTrace();
 			/* IMPROVE hiba esetén valami hibaképernyõre lehetne menni */
 		}
-		
+
 		setState(optionsState);
 	}
 
@@ -92,18 +95,18 @@ public final class BattleCity extends Game implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		boolean addKey = true;
-		
+
 		for (KeyEvent key : keys) {
 			if (key.getKeyCode() == e.getKeyCode()) {
 				addKey = false;
 			}
 		}
-		
+
 		if (addKey) {
 			keys.add(e);
 		}
 		state.keyPressed(keys);
-		
+
 	}
 
 	@Override

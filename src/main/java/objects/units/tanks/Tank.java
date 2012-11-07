@@ -31,7 +31,7 @@ public abstract class Tank extends Unit {
 	protected State prevState = State.BASE;
 	protected BulletManager bulletManager;
 	protected AudioHandler audioHandler;
-	protected Map<State, Animation> stateAnims = new HashMap<>();
+	protected Map<State, Animation> stateAnims = new HashMap<State, Animation>();
 
 	public Tank(Vector2 pos) {
 		super(pos);
@@ -114,18 +114,18 @@ public abstract class Tank extends Unit {
 	public void setState(State state) {
 		this.state = state;
 		switch (state) {
-			case BASE:
-				setAnimation(classAnims.getAnimation("base"));
-				break;
-			case DEAD:
-				break;
-			case EXPLODING:
-				setAnimation(classAnims.getAnimation("explosion"));
-				break;
-			case SPAWNING:
-				break;
-			case WANDERING:
-				break;
+		case BASE:
+			setAnimation(classAnims.getAnimation("base"));
+			break;
+		case DEAD:
+			break;
+		case EXPLODING:
+			setAnimation(classAnims.getAnimation("explosion"));
+			break;
+		case SPAWNING:
+			break;
+		case WANDERING:
+			break;
 		}
 
 	}
@@ -167,7 +167,7 @@ public abstract class Tank extends Unit {
 	public Player getPlayer() {
 		return player;
 	}
-	
+
 	/**
 	 * XXX lehet konstruktorba kéne megadni, mer így félkész objektum van csak
 	 * @param player

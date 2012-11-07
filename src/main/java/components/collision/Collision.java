@@ -116,7 +116,7 @@ public final class Collision {
 	 * @return
 	 */
 	public static List<Sprite> intersects(Sprite obj, List<Sprite> others) {
-		List<Sprite> collidingSprites = new ArrayList<>();
+		List<Sprite> collidingSprites = new ArrayList<Sprite>();
 		BoundingPart objBound = obj.getBoundingPart();
 		for (Sprite other : others) {
 			if (obj != other && isColliding(objBound, other.getBoundingPart())) {
@@ -136,7 +136,7 @@ public final class Collision {
 	 * @return
 	 */
 	public static List<Sprite> intersects(BoundingPart obj, List<Sprite> others) {
-		List<Sprite> collidingSprites = new ArrayList<>();
+		List<Sprite> collidingSprites = new ArrayList<Sprite>();
 		for (Sprite other : others) {
 			if (isColliding(obj, other.getBoundingPart())) {
 				collidingSprites.add(other);
@@ -146,7 +146,7 @@ public final class Collision {
 	}
 
 	public static List<Sprite> intersects(Rectangle obj, List<Sprite> others) {
-		List<Sprite> collidingSprites = new ArrayList<>();
+		List<Sprite> collidingSprites = new ArrayList<Sprite>();
 		for (Sprite other : others) {
 			List<Rectangle> otherRects = other.getBoundingPart().getRects();
 			for (Rectangle rect : otherRects) {
@@ -167,7 +167,7 @@ public final class Collision {
 	 * @return
 	 */
 	public static List<Sprite> intersects(Sprite obj, List<Sprite> others, Vector2 offset) {
-		List<Sprite> collidingSprites = new ArrayList<>();
+		List<Sprite> collidingSprites = new ArrayList<Sprite>();
 		List<Rectangle> rects = obj.getBoundingPart().getRects();
 		for (Rectangle rect : rects) {
 			Rectangle offsetRect = new Rectangle(rect.x + offset.getX(), rect.y + offset.getY(), rect.width, rect.height);

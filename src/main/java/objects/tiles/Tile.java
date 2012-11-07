@@ -6,7 +6,9 @@ import game.Registry;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import math.Vector2;
 import objects.EInitException;
@@ -25,14 +27,14 @@ import components.collision.Collision;
  */
 public abstract class Tile extends Sprite implements IResetable {
 	protected BoundingPart boundingPart;
-	protected List<Rectangle> collidingRects = new ArrayList<>();
+	protected List<Rectangle> collidingRects = new ArrayList<Rectangle>();
 
 	public Tile(int posX, int posY) {
 		super(new Vector2(posX, posY));
 		this.pos = new Vector2(posX, posY);
 		this.size = new Vector2(Config.TILE_WIDTH, Config.TILE_HEIGHT);
 	}
-	
+
 	/**
 	 * Hányadik rétegen van a sprite. Ez hasznos, hogy egymást elfedõ tile-okat használhassunk.
 	 * 
@@ -58,8 +60,8 @@ public abstract class Tile extends Sprite implements IResetable {
 
 	@Override
 	public void update(long gameTime) {
-		for (int i =  collidingRects.size() - 1; i >= 0; i--) {
-			Rectangle rect =  collidingRects.get(i);
+		for (int i = collidingRects.size() - 1; i >= 0; i--) {
+			Rectangle rect = collidingRects.get(i);
 			boundingPart.removeRect(rect);
 		}
 		collidingRects.clear();
@@ -67,7 +69,6 @@ public abstract class Tile extends Sprite implements IResetable {
 		super.update(gameTime);
 		checkCollision();
 	}
-
 
 	public List<Rectangle> checkCollision() {
 		if (isCollidable()) {
@@ -77,11 +78,11 @@ public abstract class Tile extends Sprite implements IResetable {
 				if (isCollidable() && !Collision.intersects(rect, Registry.singleton().getPlayerBulletRegistry()).isEmpty() ||
 						isCollidable() && !Collision.intersects(rect, Registry.singleton().getEnemyBulletRegistry()).isEmpty()) {
 					collidingRects.add(rect);
-					
+
 				}
 			}
 		}
-		
+
 		return collidingRects;
 	}
 
@@ -98,7 +99,6 @@ public abstract class Tile extends Sprite implements IResetable {
 	protected Vector2 initSize() {
 		return new Vector2(Config.TILE_WIDTH, Config.TILE_HEIGHT);
 	}
-	
 
 	@Override
 	protected Map<String, Animation> initClassAnimations() {

@@ -45,7 +45,7 @@ public class EnemyKiller extends Bonus {
 
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
-		Map<String, Animation> anims = new HashMap<>();
+		Map<String, Animation> anims = new HashMap<String, Animation>();
 
 		Animation base = AnimationFactory.createAnimation(this, "animations\\bonus\\enemykiller.xml", 200);
 		base.setContainer(this);

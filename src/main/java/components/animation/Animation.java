@@ -1,6 +1,7 @@
 package components.animation;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import objects.IGameLoop;
  * 
  */
 public class Animation implements IGameLoop {
-	protected ArrayList<Scene> scenes = new ArrayList<>();
+	protected ArrayList<Scene> scenes = new ArrayList<Scene>();
 
 	protected int sceneIndex;
 	protected long movieTime;
@@ -41,7 +42,7 @@ public class Animation implements IGameLoop {
 		this(null);
 		this.maxCount = maxCount;
 	}
-	
+
 	public Animation(IAnimatable container, int maxCount) {
 		this.container = container;
 		this.maxCount = maxCount;
@@ -123,24 +124,24 @@ public class Animation implements IGameLoop {
 			}
 		}
 	}
-	
+
 	@Override
 	public void draw(Graphics g) {
 		if (getImage() != null) {
 			if (g2d == null && g != null) {
 				g2d = (Graphics2D) g;
 			}
-			
+
 			AffineTransform originalTransform = g2d.getTransform();
-			
+
 			BufferedImage source = getImage();
-			
+
 			if (affineTransform != null) {
 				g2d.setTransform(affineTransform);
 			}
 
 			g.drawImage(source, container.getPos().getX(), container.getPos().getY(), null);
-			
+
 			g2d.setTransform(originalTransform);
 		}
 	}
@@ -152,7 +153,7 @@ public class Animation implements IGameLoop {
 			setAffineTransform(at);
 		}
 	}
-	
+
 	public final int getMaxCount() {
 		return maxCount;
 	}
@@ -176,7 +177,7 @@ public class Animation implements IGameLoop {
 	public double getImageCenterX() {
 		return container.getPos().getX() + getImage().getWidth() / 2;
 	}
-	
+
 	public double getImageCenterY() {
 		return container.getPos().getY() + getImage().getHeight() / 2;
 	}

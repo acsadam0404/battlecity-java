@@ -22,7 +22,7 @@ public class SuperBullet extends Bonus {
 
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
-		Map<String, Animation> anims = new HashMap<>();
+		Map<String, Animation> anims = new HashMap<String, Animation>();
 
 		Animation base = AnimationFactory.createAnimation(this, "animations\\bonus\\superbullet.xml", 200);
 		base.setContainer(this);

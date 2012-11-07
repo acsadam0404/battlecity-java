@@ -17,7 +17,7 @@ public class AnimationFactory {
 	protected static String mode;
 	protected static String extension;
 	protected static String fileName;
-	protected static List<BufferedImage> images = new ArrayList<>();
+	protected static List<BufferedImage> images = new ArrayList<BufferedImage>();
 
 	public static Animation createAnimation(IAnimatable animatable, String fileName, long time, int maxCount) {
 		try {
@@ -30,7 +30,7 @@ public class AnimationFactory {
 			for (int i = 0; i < images.size(); i++) {
 				anim.addScene(images.get(i), time);
 			}
-			
+
 			return anim;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class AnimationFactory {
 
 		return null;
 	}
-	
+
 	public static Animation createAnimation(IAnimatable animatable, String fileName, long time) {
 		return createAnimation(animatable, fileName, time, -1);
 	}

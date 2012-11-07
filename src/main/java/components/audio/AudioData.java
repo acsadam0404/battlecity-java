@@ -10,9 +10,10 @@ import java.util.Map;
 public class AudioData {
 
 	private String fileName;
-	private Map<String, String> sounds = new HashMap<>();
-	
+	private Map<String, String> sounds = new HashMap<String, String>();
+
 	private AudioMaker audioMaker = new AudioMaker();
+
 	public Map<String, String> getSounds() {
 		return sounds;
 	}
@@ -47,7 +48,7 @@ public class AudioData {
 			audioMaker.playSound(sounds.get(name));
 		}
 	}
-	
+
 	protected void stop() {
 		audioMaker.stop();
 	}

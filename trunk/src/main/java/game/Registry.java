@@ -15,17 +15,18 @@ import objects.SpriteType;
  */
 public class Registry {
 	private static Registry singleton = new Registry();
+
 	private Registry() {
 		/* singleton */
 	}
 
-	private List<Sprite> playerTankRegistry = new ArrayList<>();
-	private List<Sprite> playerBulletRegistry = new ArrayList<>();
-	private List<Sprite> enemyTankRegistry = new ArrayList<>();
-	private List<Sprite> enemyBulletRegistry = new ArrayList<>();
-	private List<Sprite> bonusRegistry = new ArrayList<>();
-	private List<Sprite> tileRegistry = new ArrayList<>();
-	private List<Sprite> defaultRegistry = new ArrayList<>();
+	private List<Sprite> playerTankRegistry = new ArrayList<Sprite>();
+	private List<Sprite> playerBulletRegistry = new ArrayList<Sprite>();
+	private List<Sprite> enemyTankRegistry = new ArrayList<Sprite>();
+	private List<Sprite> enemyBulletRegistry = new ArrayList<Sprite>();
+	private List<Sprite> bonusRegistry = new ArrayList<Sprite>();
+	private List<Sprite> tileRegistry = new ArrayList<Sprite>();
+	private List<Sprite> defaultRegistry = new ArrayList<Sprite>();
 
 	public static Registry singleton() {
 		return singleton;
@@ -47,47 +48,47 @@ public class Registry {
 	private List<Sprite> getRegistryForType(SpriteType spriteType) {
 		List<Sprite> registry = null;
 		switch (spriteType) {
-			case BONUS:
-				registry = bonusRegistry;
-				break;
-			case ENEMY_BULLET:
-				registry = enemyBulletRegistry;
-				break;
-			case ENEMY_TANK:
-				registry = enemyTankRegistry;
-				break;
-			case PLAYER_BULLET:
-				registry = playerBulletRegistry;
-				break;
-			case PLAYER_TANK:
-				registry = playerTankRegistry;
-				break;
-			case TILE:
-				registry = tileRegistry;
-				break;
-			case EGG_TILE:
-				registry = tileRegistry;
-				break;
-			case CONCRETEWALL_TILE:
-				registry = tileRegistry;
-				break;
-			case WALL_TILE:
-				registry = tileRegistry;
-				break;
-			case GRASS_TILE:
-				registry = tileRegistry;
-				break;
-			case WATER_TILE:
-				registry = tileRegistry;
-				break;
-			default:
-				registry = defaultRegistry;
-				break;
+		case BONUS:
+			registry = bonusRegistry;
+			break;
+		case ENEMY_BULLET:
+			registry = enemyBulletRegistry;
+			break;
+		case ENEMY_TANK:
+			registry = enemyTankRegistry;
+			break;
+		case PLAYER_BULLET:
+			registry = playerBulletRegistry;
+			break;
+		case PLAYER_TANK:
+			registry = playerTankRegistry;
+			break;
+		case TILE:
+			registry = tileRegistry;
+			break;
+		case EGG_TILE:
+			registry = tileRegistry;
+			break;
+		case CONCRETEWALL_TILE:
+			registry = tileRegistry;
+			break;
+		case WALL_TILE:
+			registry = tileRegistry;
+			break;
+		case GRASS_TILE:
+			registry = tileRegistry;
+			break;
+		case WATER_TILE:
+			registry = tileRegistry;
+			break;
+		default:
+			registry = defaultRegistry;
+			break;
 		}
-		
+
 		return registry;
 	}
-	
+
 	public List<Sprite> getPlayerTankRegistry() {
 		return playerTankRegistry;
 	}

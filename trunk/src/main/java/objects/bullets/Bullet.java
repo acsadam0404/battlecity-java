@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import math.Vector2;
-import objects.*;
+import objects.Direction;
+import objects.EInitException;
+import objects.Sprite;
 
 import components.animation.Animation;
 import components.animation.AnimationFactory;
@@ -20,7 +22,7 @@ import components.collision.Collision;
  * @author Ács ádám
  *
  */
-public abstract class Bullet extends Sprite  {
+public abstract class Bullet extends Sprite {
 	protected Direction direction;
 	protected float speed = 2f;
 	protected boolean colliding = false;
@@ -29,7 +31,7 @@ public abstract class Bullet extends Sprite  {
 	public Bullet() {
 		super(Config.OFFSCREEN);
 	}
-	
+
 	@Override
 	public void init() throws EInitException {
 		super.init();
@@ -38,7 +40,7 @@ public abstract class Bullet extends Sprite  {
 	@Override
 	public void update(long gameTime) {
 		pos = pos.add(Vector2.multiply(direction.getVector2(), speed));
-		
+
 		super.update(gameTime);
 	}
 
@@ -51,7 +53,7 @@ public abstract class Bullet extends Sprite  {
 	public Vector2 getPos() {
 		return pos;
 	}
-	
+
 	public void fire(Direction direction) {
 		this.direction = direction;
 	}
@@ -63,11 +65,10 @@ public abstract class Bullet extends Sprite  {
 
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
-		Map<String, Animation> anims = new HashMap<>();
+		Map<String, Animation> anims = new HashMap<String, Animation>();
 		anims.put("base", AnimationFactory.createAnimation(this, "animations\\bullet.xml", 1000));
 		return anims;
 	}
-
 
 	@Override
 	public BoundingPart getBoundingPart() {
@@ -82,7 +83,7 @@ public abstract class Bullet extends Sprite  {
 		setPos(Config.OFFSCREEN);
 		colliding = false;
 	}
-	
+
 	@Override
 	public boolean isCollidable() {
 		return true;

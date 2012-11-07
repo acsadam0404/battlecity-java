@@ -4,11 +4,16 @@ import game.Config;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 import math.Vector2;
 import objects.EInitException;
-import objects.tiles.*;
+import objects.tiles.ENoSuchTileException;
+import objects.tiles.Tile;
+import objects.tiles.TileFactory;
 
 /**
  * @author Ács Ádám
@@ -18,7 +23,7 @@ import objects.tiles.*;
  */
 public class MapData {
 	private Tile[][] tileMap;
-	private List<Vector2> spawnPoints  = new ArrayList<>();
+	private List<Vector2> spawnPoints = new ArrayList<Vector2>();
 
 	private int mapWidth;
 	private int mapHeight;
@@ -45,7 +50,7 @@ public class MapData {
 
 				}
 			}
-			
+
 			while (sc.hasNextInt()) {
 				int a = sc.nextInt() * Config.TILE_WIDTH;
 				int b = sc.nextInt() * Config.TILE_HEIGHT;
@@ -61,11 +66,9 @@ public class MapData {
 		}
 	}
 
-
 	Tile getTile(int i, int j) {
 		return tileMap[i][j];
 	}
-
 
 	int getMapHeight() {
 		return mapHeight;

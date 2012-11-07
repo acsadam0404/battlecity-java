@@ -23,10 +23,10 @@ public class EggTile extends Tile {
 	public SpriteType getSpriteType() {
 		return SpriteType.EGG_TILE;
 	}
-	
+
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
-		Map<String, Animation> anims = new HashMap<>();
+		Map<String, Animation> anims = new HashMap<String, Animation>();
 		anims.put("base", AnimationFactory.createAnimation(this, "animations\\egg.xml", 200));
 		return anims;
 	}

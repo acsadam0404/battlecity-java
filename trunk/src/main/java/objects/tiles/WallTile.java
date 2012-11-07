@@ -7,7 +7,11 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
@@ -23,7 +27,7 @@ import components.collision.BoundingPart;
  *
  */
 public class WallTile extends Tile {
-	protected Map<Rectangle, BufferedImage> images = new HashMap<>();
+	protected Map<Rectangle, BufferedImage> images = new HashMap<Rectangle, BufferedImage>();
 	protected Rectangle topRight;
 	protected Rectangle bottomRight;
 	protected Rectangle topLeft;
@@ -32,7 +36,7 @@ public class WallTile extends Tile {
 
 	public WallTile(int posX, int posY) {
 		super(posX, posY);
-		
+
 		/* beállítom a négy négyzetet amibõl a tile-ok összeálnak */
 		int newSizeX = size.getX() / 2;
 		int newSizeY = size.getY() / 2;
@@ -51,7 +55,6 @@ public class WallTile extends Tile {
 	public void init() throws EInitException {
 		useAnimation = false;
 		super.init();
-
 
 		try {
 			wholeImage = ImageIO.read(new File("images\\fal1.png"));
@@ -95,7 +98,7 @@ public class WallTile extends Tile {
 
 	@Override
 	public void reset() {
-		List<Rectangle> rects = new ArrayList<>();
+		List<Rectangle> rects = new ArrayList<Rectangle>();
 		rects.add(bottomLeft);
 		rects.add(bottomRight);
 		rects.add(topLeft);

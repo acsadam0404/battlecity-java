@@ -20,7 +20,7 @@ public class WaterTile extends Tile {
 	public WaterTile(int posX, int posY) {
 		super(posX, posY);
 	}
-	
+
 	@Override
 	public void init() throws EInitException {
 		super.init();
@@ -30,7 +30,7 @@ public class WaterTile extends Tile {
 	public void update(long gameTime) {
 		super.update(gameTime);
 	}
-	
+
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
@@ -40,10 +40,10 @@ public class WaterTile extends Tile {
 	public SpriteType getSpriteType() {
 		return SpriteType.WATER_TILE;
 	}
-	
+
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
-		Map<String, Animation> anims = new HashMap<>();
+		Map<String, Animation> anims = new HashMap<String, Animation>();
 		anims.put("base", AnimationFactory.createAnimation(this, "animations\\viz.xml", 200));
 		return anims;
 	}

@@ -17,15 +17,14 @@ import components.animation.Animation;
 import components.animation.AnimationFactory;
 import components.collision.Collision;
 
-
 /**
  * 
  * @author Ács Ádám
  *
  */
-public class PlayerTank extends Tank implements IResetable{
+public class PlayerTank extends Tank implements IResetable {
 	private AffineTransform at;
-	
+
 	public PlayerTank(Vector2 pos) {
 		super(pos);
 		maxHealth = 1;
@@ -61,8 +60,7 @@ public class PlayerTank extends Tank implements IResetable{
 
 			if (!checkCollisionForMove(offset)) {
 				pos = pos.add(offset);
-			}
-			else if (!checkCollisionForMove(offset.normalize())) {
+			} else if (!checkCollisionForMove(offset.normalize())) {
 				pos = pos.add(offset.normalize());
 			}
 		}
@@ -81,25 +79,23 @@ public class PlayerTank extends Tank implements IResetable{
 
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
-		Map<String, Animation> anims = new HashMap<>();
-		
+		Map<String, Animation> anims = new HashMap<String, Animation>();
+
 		Animation base = AnimationFactory.createAnimation(this, "animations\\playertank.xml", 200);
 		base.setContainer(this);
 		base.init();
 		anims.put("base", base);
-		
-		
+
 		Animation exploding = AnimationFactory.createAnimation(this, "animations\\explosion.xml", 50, 1);
 		exploding.setContainer(this);
 		exploding.init();
 		anims.put("explosion", exploding);
-		
-		
+
 //		Animation spawn = AnimationFactory.createAnimation(this, "animations\\spawn.xml", 50, 1);
 //		spawn.setContainer(this);
 //		spawn.init();
 //		anims.put("spawn", spawn);
-		
+
 		return anims;
 	}
 
@@ -114,10 +110,10 @@ public class PlayerTank extends Tank implements IResetable{
 			health--;
 			setState(State.EXPLODING);
 		}
-		
+
 		return true;
 	}
-	
+
 	public void setSuperBullet(boolean superBullet) {
 		bulletManager.getBullet().setSuperBullet(superBullet);
 	}

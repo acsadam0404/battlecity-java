@@ -13,7 +13,7 @@ import java.util.List;
  *
  */
 public class BoundingPart {
-	private List<Rectangle> rects = new ArrayList<>();
+	private List<Rectangle> rects = new ArrayList<Rectangle>();
 
 	public BoundingPart(Rectangle rect) {
 		rects.add(rect);
@@ -29,7 +29,7 @@ public class BoundingPart {
 
 	public void removeRect(Rectangle rect) {
 		if (rects != null && rect != null) {
-			for (int i = rects.size() - 1; i >= 0 ; i--) {
+			for (int i = rects.size() - 1; i >= 0; i--) {
 				if (rects.get(i).equals(rect)) {
 					rects.remove(i);
 				}

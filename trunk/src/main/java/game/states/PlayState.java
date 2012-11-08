@@ -159,7 +159,7 @@ public class PlayState extends AbstractGameState {
 	@Override
 	public void onSet() {
 		TileMap.singleton().setData(
-				levels.get(Integer.valueOf(Config.currentLevel)));
+		levels.get(Integer.valueOf(Config.currentLevel)));
 		audioHandler.playSound("background");
 		time = Config.MAXTIME;
 		timer.start();

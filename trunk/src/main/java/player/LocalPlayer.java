@@ -1,5 +1,6 @@
 package player;
 
+import game.Config;
 import game.IKeyboardControlled;
 import game.input.keyboard.KeyboardInput;
 
@@ -71,6 +72,6 @@ public class LocalPlayer extends Player implements IKeyboardControlled{
 	@Override
 	public void reset() {
 		tank.reset();
-		tank.setPos(new Vector2(200, 200));
+		tank.setPos(new Vector2(4 * Config.TILE_WIDTH, 12 * Config.TILE_HEIGHT));
 	}
 }

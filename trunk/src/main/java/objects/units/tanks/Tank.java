@@ -118,6 +118,8 @@ public abstract class Tank extends Unit {
 			setAnimation(classAnims.getAnimation("base"));
 			break;
 		case DEAD:
+			Registry.singleton().unregister(bulletManager.getBullet());
+			Registry.singleton().unregister(this);
 			break;
 		case EXPLODING:
 			setAnimation(classAnims.getAnimation("explosion"));
@@ -125,6 +127,8 @@ public abstract class Tank extends Unit {
 		case SPAWNING:
 			break;
 		case WANDERING:
+			break;
+		default:
 			break;
 		}
 
@@ -174,5 +178,10 @@ public abstract class Tank extends Unit {
 	 */
 	public void setPlayer(Player player) {
 		this.player = player;
+	}
+
+	public void reset() {
+		Registry.singleton().unregister(this);
+		bulletManager.reset();
 	}
 }

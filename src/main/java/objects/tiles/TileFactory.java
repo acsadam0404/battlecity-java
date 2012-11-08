@@ -27,7 +27,9 @@ public final class TileFactory {
 			case 3:
 				tile = new GrassTile(posX, posY);
 				break;
-			case 9: break;
+			case 9: 
+				tile = new EggTile(posX, posY);
+				break;
 			case 4:
 				tile = new WaterTile(posX, posY);
 				break;

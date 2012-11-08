@@ -46,6 +46,8 @@ public class BulletManager implements IGameLoop {
 				case ZERO:
 					bullet.setPos(Vector2.add(tank.getPos(), new Vector2(Config.TILE_WIDTH / 2, Config.TILE_HEIGHT / 2))); 
 					break;
+			default:
+				break;
 			}
 			
 			fired = true;
@@ -82,5 +84,13 @@ public class BulletManager implements IGameLoop {
 	
 	public Bullet getBullet() {
 		return bullet;
+	}
+
+	public boolean isFired() {
+		return fired;
+	}
+
+	public void reset() {
+		bullet.reset();
 	}
 }

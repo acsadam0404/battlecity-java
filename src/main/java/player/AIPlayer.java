@@ -43,6 +43,7 @@ public class AIPlayer extends Player {
 			Tank tank = tanks.get(i);
 
 			if (tank.getState().equals(Tank.State.DEAD)) {
+				tank.reset();
 				getTanks().remove(tank);
 				continue;
 			}
@@ -50,13 +51,13 @@ public class AIPlayer extends Player {
 			Random rnd = new Random();
 			int rndInt = rnd.nextInt(101); /* rnd % */
 
-			if (rndInt < 3) {
+			if (rndInt < 2) {
 				tank.setDirection(Direction.SOUTH);
-			} else if (rndInt < 6) {
+			} else if (rndInt < 4) {
 				tank.setDirection(Direction.EAST);
-			} else if (rndInt < 9) {
+			} else if (rndInt < 6) {
 				tank.setDirection(Direction.WEST);
-			} else if (rndInt < 12) {
+			} else if (rndInt < 8) {
 				tank.setDirection(Direction.NORTH);
 			}
 
@@ -86,6 +87,9 @@ public class AIPlayer extends Player {
 
 	@Override
 	public void reset() {
+		for (Tank tank : tanks) {
+			tank.reset();
+		}
 		tanks.clear();
 	}
 }

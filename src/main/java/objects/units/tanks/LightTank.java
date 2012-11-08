@@ -57,7 +57,7 @@ public class LightTank extends EnemyTank {
 		case DEAD:
 			break;
 		case EXPLODING:
-			if (!anim.isRunning()) {
+			if (!anim.isRunning() && !bulletManager.isFired()) {
 				setState(State.DEAD);
 			}
 			break;

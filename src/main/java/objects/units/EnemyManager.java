@@ -51,7 +51,6 @@ public class EnemyManager implements IGameLoop, IResetable  {
 			for (int i = enemies.size() - 1; i >= 0; i--) {
 				EnemyTank tank = (EnemyTank) enemies.get(i);
 				if (tank.getState() == State.DEAD) {
-					Registry.singleton().unregister(tank); 
 					killedEnemies++;
 				}
 			}

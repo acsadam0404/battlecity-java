@@ -21,6 +21,7 @@ public abstract class EnemyTank extends Tank {
 		if (!Collision.intersects(this, Registry.singleton().getPlayerBulletRegistry()).isEmpty()) {
 			setState(State.EXPLODING);
 			colliding = true;
+			Registry.singleton().unregister(this);
 		}
 		
 		return colliding;

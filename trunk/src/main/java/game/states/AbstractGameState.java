@@ -2,6 +2,7 @@ package game.states;
 
 import game.BattleCity;
 import game.IKeyboardControlled;
+import game.input.keyboard.KeyboardInput;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -24,29 +25,24 @@ public abstract class AbstractGameState implements IGameLoop, IKeyboardControlle
 
 	@Override
 	public void update(long gameTime) {
-		return;
 	}
 
 	@Override
 	public void init() throws EInitException {
-		return;
 	}
 
 	public void onSet() {
-		return;
 	}
 
 	public void onExit() {
-		return;
-	}
-	
-	@Override
-	public void keyPressed(List<KeyEvent> keys) {
-		return;
 	}
 	
 	@Override
 	public void draw(Graphics g) {
-		return;
+	}
+	
+	@Override
+	public void keyPressed(KeyboardInput keyboard) {
+		
 	}
 }

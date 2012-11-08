@@ -1,10 +1,10 @@
 package player;
 
 import game.IKeyboardControlled;
+import game.input.keyboard.KeyboardInput;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.List;
 
 import math.Vector2;
 import objects.Direction;
@@ -50,24 +50,22 @@ public class LocalPlayer extends Player implements IKeyboardControlled{
 	}
 
 	@Override
-	public void keyPressed(List<KeyEvent> keys) {
-		for (KeyEvent e : keys) {
-			if (e.getKeyCode() == KeyEvent.VK_UP) {
+	public void keyPressed(KeyboardInput keyboard) {
+			if (keyboard.keyDown(KeyEvent.VK_UP)) {
 				tank.move(Direction.NORTH);
 			}
-			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			if (keyboard.keyDown(KeyEvent.VK_DOWN)) {
 				tank.move(Direction.SOUTH);
 			}
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			if (keyboard.keyDown(KeyEvent.VK_LEFT)) {
 				tank.move(Direction.WEST);
 			}
-			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			if (keyboard.keyDown(KeyEvent.VK_RIGHT)) {
 				tank.move(Direction.EAST);
 			}
-			if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			if (keyboard.keyDown(KeyEvent.VK_SPACE)) {
 				tank.fire();
 			}
-		}
 	}
 
 	@Override

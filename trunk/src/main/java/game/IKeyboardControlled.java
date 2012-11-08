@@ -1,7 +1,6 @@
 package game;
 
-import java.awt.event.KeyEvent;
-import java.util.List;
+import game.input.keyboard.KeyboardInput;
 
 /**
  * Az implementáló objektumokat lehet irányítani a billentyûzettel.
@@ -9,5 +8,5 @@ import java.util.List;
  *
  */
 public interface IKeyboardControlled {
-	public void keyPressed(List<KeyEvent> keys);
+	public void keyPressed(KeyboardInput keyboard);
 }

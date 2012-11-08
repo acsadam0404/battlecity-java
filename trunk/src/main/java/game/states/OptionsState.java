@@ -2,6 +2,7 @@ package game.states;
 
 import game.BattleCity;
 import game.Config;
+import game.input.keyboard.KeyboardInput;
 import gui.GLabel;
 
 import java.awt.Color;
@@ -9,7 +10,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 
@@ -83,19 +83,18 @@ public class OptionsState extends AbstractGameState {
 	}
 
 	@Override
-	public void keyPressed(List<KeyEvent> keys) {
-		for (KeyEvent e : keys) {
-			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+	public void keyPressed(KeyboardInput keyboard) {
+			if (keyboard.keyDownOnce(KeyEvent.VK_ESCAPE)) {
 				game.exit();
 			}
 
-			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			if (keyboard.keyDownOnce(KeyEvent.VK_DOWN)) {
 				selection = selection.getNext();
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			else if (keyboard.keyDownOnce(KeyEvent.VK_UP)) {
 				selection = selection.getPrevious();
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_ENTER) {
+			else if (keyboard.keyDownOnce(KeyEvent.VK_SPACE) || keyboard.keyDown(KeyEvent.VK_ENTER)) {
 				switch (selection) {
 					case EXIT:
 						game.exit();
@@ -109,16 +108,15 @@ public class OptionsState extends AbstractGameState {
 				}
 			}
 
-			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			if (keyboard.keyDownOnce(KeyEvent.VK_LEFT)) {
 				currentLevel--;
 				currentLevel = MathHelper.clamp(currentLevel, 1, Config.MAX_LEVEL);
 			}
-			else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			else if (keyboard.keyDownOnce(KeyEvent.VK_RIGHT)) {
 				currentLevel++;
 				currentLevel = MathHelper.clamp(currentLevel, 1, Config.MAX_LEVEL);
 			}
 			level.setString(Integer.toString(currentLevel));
-		}
 	}
 
 	private enum Selection {

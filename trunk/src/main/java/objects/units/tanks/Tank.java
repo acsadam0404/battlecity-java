@@ -70,26 +70,26 @@ public abstract class Tank extends Unit {
 
 	public abstract boolean checkCollision();
 
-	public boolean checkCollisionForMove(Vector2 offset) {
-		boolean collision = false;
+	public boolean moveAllowed(Vector2 offset) {
+		boolean moveAllowed = true;
 
 		if (Collision.isOutOfScreen(this, offset)) {
-			collision = true;
+			moveAllowed = false;
 		}
 
 		if (!Collision.intersects(this, Registry.singleton().getPlayerTankRegistry(), offset).isEmpty()) {
-			collision = true;
+			moveAllowed = false;
 		}
 
 		if (!Collision.intersects(this, Registry.singleton().getTileRegistry(), offset).isEmpty()) {
-			collision = true;
+			moveAllowed = false;
 		}
 
 		if (!Collision.intersects(this, Registry.singleton().getEnemyTankRegistry(), offset).isEmpty()) {
-			collision = true;
+			moveAllowed = false;
 		}
 
-		return collision;
+		return moveAllowed;
 	}
 
 	@Override
@@ -159,7 +159,7 @@ public abstract class Tank extends Unit {
 	}
 
 	public void moveInDirection() {
-		if (!checkCollisionForMove(Vector2.multiply(direction.getVector2(), speed))) {
+		if (moveAllowed(Vector2.multiply(direction.getVector2(), speed))) {
 			move(direction);
 		}
 	}

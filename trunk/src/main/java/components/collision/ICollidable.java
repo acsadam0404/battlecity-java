@@ -9,5 +9,6 @@ public interface ICollidable {
 
 	public BoundingPart getBoundingPart();
 	public boolean isCollidable();
+	public boolean isPassableByBullet();
 
 }

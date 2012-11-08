@@ -28,7 +28,7 @@ public class LightTank extends EnemyTank {
 	public void move(Direction dir) {
 		Vector2 offset = Vector2.multiply(dir.getVector2(), speed);
 
-		if (!checkCollisionForMove(offset)) {
+		if (moveAllowed(offset)) {
 			pos = pos.add(offset);
 		}
 	}
@@ -64,6 +64,8 @@ public class LightTank extends EnemyTank {
 		case WANDERING:
 			break;
 		case SPAWNING:
+			break;
+		default:
 			break;
 		}
 	}

@@ -44,6 +44,7 @@ public abstract class Bonus extends Sprite {
 
 	public Bonus(Vector2 pos) {
 		super(pos);
+		passableByBullet = true;
 	}
 
 	protected abstract int getBonusTime();

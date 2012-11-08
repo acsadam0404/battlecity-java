@@ -19,6 +19,7 @@ import components.animation.AnimationFactory;
 public class WaterTile extends Tile {
 	public WaterTile(int posX, int posY) {
 		super(posX, posY);
+		passableByBullet = true;
 	}
 
 	@Override

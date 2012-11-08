@@ -31,14 +31,13 @@ public abstract class Tile extends Sprite implements IResetable {
 
 	public Tile(int posX, int posY) {
 		super(new Vector2(posX, posY));
-		this.pos = new Vector2(posX, posY);
 		this.size = new Vector2(Config.TILE_WIDTH, Config.TILE_HEIGHT);
 	}
 
 	/**
 	 * Hányadik rétegen van a sprite. Ez hasznos, hogy egymást elfedõ tile-okat használhassunk.
 	 * 
-	 * IMPROVE ehelyett egy globális spritemanager kellene, ami kirajzol minden sprite-ot a megfelelõ rétegre.
+	 * XXX ehelyett egy globális spritemanager kellene, ami kirajzol minden sprite-ot a megfelelõ rétegre.
 	 */
 	public abstract int getLayerNumber();
 
@@ -76,7 +75,8 @@ public abstract class Tile extends Sprite implements IResetable {
 			for (int i = rects.size() - 1; i >= 0; i--) {
 				Rectangle rect = rects.get(i);
 				if (isCollidable() && !Collision.intersects(rect, Registry.singleton().getPlayerBulletRegistry()).isEmpty() ||
-						isCollidable() && !Collision.intersects(rect, Registry.singleton().getEnemyBulletRegistry()).isEmpty()) {
+						isCollidable() && !Collision.intersects(rect, Registry.singleton().getEnemyBulletRegistry()).isEmpty()
+						&& !isPassableByBullet()) {
 					collidingRects.add(rect);
 
 				}

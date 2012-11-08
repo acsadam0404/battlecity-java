@@ -1,6 +1,9 @@
 package objects.bullets;
 
+import java.util.List;
+
 import game.Registry;
+import objects.Sprite;
 import objects.SpriteType;
 
 import components.collision.Collision;
@@ -25,9 +28,6 @@ public class EnemyBullet extends Bullet{
 	public boolean isColliding() {
 		boolean colliding = false;
 		
-		if (!Collision.intersects(this, Registry.singleton().getTileRegistry()).isEmpty()) {
-			colliding = true;
-		}
 		if (!Collision.intersects(this, Registry.singleton().getPlayerBulletRegistry()).isEmpty()) {
 			colliding = true;
 		}

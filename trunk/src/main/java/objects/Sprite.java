@@ -16,12 +16,14 @@ import components.collision.ICollidable;
  *
  */
 public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
+	protected ClassAnimations classAnims;
+	
 	protected Vector2 pos;
 	protected Vector2 size;
 	protected Animation anim;
 	protected boolean useAnimation = true;
 	protected boolean collidable = true;
-	protected ClassAnimations classAnims;
+	protected boolean passableByBullet = false;
 	
 	protected static class ClassAnimations {
 		private Map<String, Animation> animations;
@@ -109,5 +111,10 @@ public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
 	@Override
 	public boolean isCollidable() {
 		return collidable;
+	}
+
+	@Override
+	public boolean isPassableByBullet() {
+		return passableByBullet;
 	}
 }

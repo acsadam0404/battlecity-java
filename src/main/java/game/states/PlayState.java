@@ -3,6 +3,7 @@ package game.states;
 import game.BattleCity;
 import game.Config;
 import game.ScoreHandler;
+import game.input.keyboard.KeyboardInput;
 import gui.GLabel;
 
 import java.awt.Color;
@@ -30,10 +31,11 @@ import components.audio.AudioData;
 import components.audio.AudioHandler;
 
 /**
- * A játékot irányító state, ami felelõs a TileMap, játékosok, ellenségek, score kezeléséért. A játék képernyõt valósítja meg.
+ * A játékot irányító state, ami felelõs a TileMap, játékosok, ellenségek, score
+ * kezeléséért. A játék képernyõt valósítja meg.
  * 
  * @author Ács Ádám
- *
+ * 
  */
 public class PlayState extends AbstractGameState {
 	private AbstractAction gameEndListener = new AbstractAction() {
@@ -156,7 +158,8 @@ public class PlayState extends AbstractGameState {
 
 	@Override
 	public void onSet() {
-		TileMap.singleton().setData(levels.get(Integer.valueOf(Config.currentLevel)));
+		TileMap.singleton().setData(
+				levels.get(Integer.valueOf(Config.currentLevel)));
 		audioHandler.playSound("background");
 		time = Config.MAXTIME;
 		timer.start();
@@ -176,23 +179,22 @@ public class PlayState extends AbstractGameState {
 	}
 
 	@Override
-	public void keyPressed(List<KeyEvent> keys) {
-		for (KeyEvent e : keys) {
-			if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-				game.setState(game.getOptionsState());
-			}
+	public void keyPressed(KeyboardInput keyboard) {
+		if (keyboard.keyDown(KeyEvent.VK_ESCAPE)) {
+			game.setState(game.getOptionsState());
+		}
 
-			if (e.getKeyCode() == KeyEvent.VK_P && !gameOverYouWon && !gameOverEnemyWon) {
-				if (paused) {
-					paused = false;
-				} else {
-					paused = true;
-				}
+		if (keyboard.keyDown(KeyEvent.VK_P) && !gameOverYouWon
+				&& !gameOverEnemyWon) {
+			if (paused) {
+				paused = false;
+			} else {
+				paused = true;
 			}
 		}
 
 		if (!paused) {
-			player.keyPressed(keys);
+			player.keyPressed(keyboard);
 		}
 	}
 }

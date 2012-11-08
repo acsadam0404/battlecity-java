@@ -32,6 +32,7 @@ public class Program extends JFrame {
 		}
 		
 		Program program = new Program();
+
 		game = new BattleCity(program);
 		game.init();
 
@@ -42,9 +43,10 @@ public class Program extends JFrame {
 		program.setDefaultCloseOperation(EXIT_ON_CLOSE);
 //		program.setUndecorated(true); /* FIXME ha bekapcsolom van baj eléggé.. szerintem appletként emiatt nem lehetne megjeleníteni*/
 		program.setVisible(true);
-		program.addKeyListener(game);
+		program.addKeyListener(game.getKeyboardInput());
 		program.setLayout(null);
 		program.setResizable(false);
+		program.setTitle("Battle City");
 		
 	}
 

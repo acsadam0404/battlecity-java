@@ -1,5 +1,6 @@
 package game;
 
+import game.input.keyboard.KeyboardInput;
 import game.states.AbstractGameState;
 import game.states.OptionsState;
 import game.states.PlayState;
@@ -7,8 +8,6 @@ import game.states.PlayState;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import objects.EInitException;
 
@@ -19,17 +18,17 @@ import objects.EInitException;
  * @author Ács Ádám
  *
  */
-public final class BattleCity extends Game implements KeyListener {
+public final class BattleCity extends Game {
 	private AbstractGameState playState;
 	private AbstractGameState optionsState;
 
 	private AbstractGameState state;
 
-	private List<KeyEvent> keys = new ArrayList<KeyEvent>();
-
+	private KeyboardInput keyboard = new KeyboardInput();
+	
 	public BattleCity(Program program) {
 		super(program);
-		addKeyListener(this);
+		addKeyListener(keyboard);
 		requestFocus();
 		setLayout(null);
 		setIgnoreRepaint(true);
@@ -76,6 +75,8 @@ public final class BattleCity extends Game implements KeyListener {
 	@Override
 	public void update(long gameTime) {
 		if (state != null) {
+			keyboard.poll();
+			state.keyPressed(keyboard);
 			state.update(gameTime);
 		}
 	}
@@ -86,40 +87,46 @@ public final class BattleCity extends Game implements KeyListener {
 			state.draw(g);
 		}
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		/* nincs szükség rá */
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		boolean addKey = true;
-
-		for (KeyEvent key : keys) {
-			if (key.getKeyCode() == e.getKeyCode()) {
-				addKey = false;
-			}
-		}
-
-		if (addKey) {
-			keys.add(e);
-		}
-		state.keyPressed(keys);
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		for (int i = keys.size() - 1; i >= 0; i--) {
-			if (keys.get(i).getKeyCode() == e.getKeyCode()) {
-				keys.remove(i);
-			}
-		}
-	}
+	
+	
+//
+//	@Override
+//	public void keyTyped(KeyEvent e) {
+//		/* nincs szükség rá */
+//	}
+//
+//	@Override
+//	public void keyPressed(KeyEvent e) {
+//		boolean addKey = true;
+//
+//		for (KeyEvent key : keys) {
+//			if (key.getKeyCode() == e.getKeyCode()) {
+//				addKey = false;
+//			}
+//		}
+//
+//		if (addKey) {
+//			keys.add(e);
+//		}
+//		state.keyPressed(keys);
+//
+//	}
+//
+//	@Override
+//	public void keyReleased(KeyEvent e) {
+//		for (int i = keys.size() - 1; i >= 0; i--) {
+//			if (keys.get(i).getKeyCode() == e.getKeyCode()) {
+//				keys.remove(i);
+//			}
+//		}
+//	}
 
 	public void exit() {
 		program.exit();
+	}
+
+	public KeyListener getKeyboardInput() {
+		return keyboard;
 	}
 
 }

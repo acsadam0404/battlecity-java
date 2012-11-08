@@ -58,9 +58,9 @@ public class PlayerTank extends Tank implements IResetable {
 
 			Vector2 offset = Vector2.multiply(dir.getVector2(), speed);
 
-			if (!checkCollisionForMove(offset)) {
+			if (moveAllowed(offset)) {
 				pos = pos.add(offset);
-			} else if (!checkCollisionForMove(offset.normalize())) {
+			} else if (moveAllowed(offset.normalize())) {
 				pos = pos.add(offset.normalize());
 			}
 		}

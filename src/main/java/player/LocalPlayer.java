@@ -55,13 +55,13 @@ public class LocalPlayer extends Player implements IKeyboardControlled{
 			if (keyboard.keyDown(KeyEvent.VK_UP)) {
 				tank.move(Direction.NORTH);
 			}
-			if (keyboard.keyDown(KeyEvent.VK_DOWN)) {
+			else if (keyboard.keyDown(KeyEvent.VK_DOWN)) {
 				tank.move(Direction.SOUTH);
 			}
-			if (keyboard.keyDown(KeyEvent.VK_LEFT)) {
+			else if (keyboard.keyDown(KeyEvent.VK_LEFT)) {
 				tank.move(Direction.WEST);
 			}
-			if (keyboard.keyDown(KeyEvent.VK_RIGHT)) {
+			else if (keyboard.keyDown(KeyEvent.VK_RIGHT)) {
 				tank.move(Direction.EAST);
 			}
 			if (keyboard.keyDown(KeyEvent.VK_SPACE)) {

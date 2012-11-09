@@ -39,6 +39,11 @@ public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
 			throw new ENoAnimationFoundException(name);
 		}
 	}
+
+	public Sprite(Vector2 pos) {
+		this.pos = pos;
+	}
+	
 	
 	/**
 	 * registry ezt használja
@@ -46,9 +51,6 @@ public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
 	 */
 	public abstract SpriteType getSpriteType();
 	
-	public Sprite(Vector2 pos) {
-		this.pos = pos;
-	}
 	
 	@Override
 	public void update(long gameTime) {

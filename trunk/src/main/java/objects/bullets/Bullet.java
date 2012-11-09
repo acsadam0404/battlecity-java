@@ -26,7 +26,7 @@ import components.collision.Collision;
  */
 public abstract class Bullet extends Sprite {
 	protected Direction direction;
-	protected float speed = 2f;
+	protected float speed = 5f;
 	protected boolean colliding = false;
 	protected boolean superBullet = false;
 
@@ -74,7 +74,8 @@ public abstract class Bullet extends Sprite {
 
 	@Override
 	public BoundingPart getBoundingPart() {
-		return new BoundingPart(new Rectangle(pos.getX(), pos.getY(), size.getX(), size.getY()));
+		/* -4 ek azért kellenek, mert a kép kisebb mint a boundingpart */ /* FIXME tesztelni */
+		return new BoundingPart(new Rectangle(pos.getX() - 4, pos.getY() - 4, size.getX(), size.getY()));
 	}
 
 	public boolean isColliding() {

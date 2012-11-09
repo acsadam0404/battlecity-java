@@ -28,8 +28,8 @@ public final class Config {
 	public static int TILE_WIDTH = 32;
 	public static int TILE_HEIGHT = 32;
 
-	public static final int BULLET_WIDTH = 8;
-	public static final int BULLET_HEIGHT = 8;
+	public static final int BULLET_WIDTH = 16;
+	public static final int BULLET_HEIGHT = 16;
 	
 	public static final Vector2 OFFSCREEN = new Vector2(5000, -500);
 	

@@ -87,39 +87,6 @@ public final class BattleCity extends Game {
 			state.draw(g);
 		}
 	}
-	
-	
-//
-//	@Override
-//	public void keyTyped(KeyEvent e) {
-//		/* nincs szükség rá */
-//	}
-//
-//	@Override
-//	public void keyPressed(KeyEvent e) {
-//		boolean addKey = true;
-//
-//		for (KeyEvent key : keys) {
-//			if (key.getKeyCode() == e.getKeyCode()) {
-//				addKey = false;
-//			}
-//		}
-//
-//		if (addKey) {
-//			keys.add(e);
-//		}
-//		state.keyPressed(keys);
-//
-//	}
-//
-//	@Override
-//	public void keyReleased(KeyEvent e) {
-//		for (int i = keys.size() - 1; i >= 0; i--) {
-//			if (keys.get(i).getKeyCode() == e.getKeyCode()) {
-//				keys.remove(i);
-//			}
-//		}
-//	}
 
 	public void exit() {
 		program.exit();

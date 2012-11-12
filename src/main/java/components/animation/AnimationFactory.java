@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Az osztály beolvassa az xml-t és animációt állít elõ belõle.
+ * @author Ács
+ *
+ */
 public class AnimationFactory {
 	protected static int width;
 	protected static int height;
@@ -18,7 +23,13 @@ public class AnimationFactory {
 	protected static String extension;
 	protected static String fileName;
 	protected static List<BufferedImage> images = new ArrayList<BufferedImage>();
-
+	/*XXX Ez az osztály elég régen készült, ezért nem objektum orientált. Mindenképpen újra kell írni.*/
+	
+	/**
+	* Egy animáció létrehozása xml fájlból.
+	* 
+	* @author Ács Ádám
+	*/
 	public static Animation createAnimation(IAnimatable animatable, String fileName, long time, int maxCount) {
 		try {
 			images.clear();
@@ -39,6 +50,13 @@ public class AnimationFactory {
 		return null;
 	}
 
+	/**
+	 * létrehoz egy végtelen animációt
+	 * @param animatable
+	 * @param fileName
+	 * @param time
+	 * @return
+	 */
 	public static Animation createAnimation(IAnimatable animatable, String fileName, long time) {
 		return createAnimation(animatable, fileName, time, -1);
 	}

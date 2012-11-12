@@ -9,10 +9,21 @@ import java.awt.Graphics;
  * 2012.06.28.
  */
 public interface IGameLoop extends IDrawable {
+	/**
+	 * fájlból olvasás
+	 * @throws EInitException
+	 */
 	public void init() throws EInitException;
 
+	/**
+	 * játékciklus frissítés mûvelete
+	 * @param gameTime
+	 */
 	public void update(long gameTime);
 
+	/**
+	 * játékciklus rajzolás mûvelete
+	 */
 	@Override
 	public void draw(Graphics g);
 }

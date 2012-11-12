@@ -67,6 +67,10 @@ public class PlayState extends AbstractGameState {
 
 	private Map<Integer, MapData> levels = new HashMap<Integer, MapData>();
 
+	/**
+	 * az állapot létrehozása, alapértelmezett adatok feltöltése
+	 * @param game
+	 */
 	public PlayState(BattleCity game) {
 		super(game);
 		player = new LocalPlayer();
@@ -74,6 +78,9 @@ public class PlayState extends AbstractGameState {
 		bonusManager = new BonusManager();
 	}
 
+	/**
+	 * beolvassa a képeket és hangokat a fájlokból
+	 */
 	@Override
 	public void init() throws EInitException {
 		background = new ImageIcon("images\\playbg.png").getImage();
@@ -112,6 +119,9 @@ public class PlayState extends AbstractGameState {
 		scoreHandler = new ScoreHandler(player, null, enemyManager);
 	}
 
+	/**
+	 * frissíti az állapotot
+	 */
 	@Override
 	public void update(long gameTime) {
 		if (!paused) {
@@ -133,6 +143,9 @@ public class PlayState extends AbstractGameState {
 		}
 	}
 
+	/**
+	 * kirajzolja a képernyõt
+	 */
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(background, 0, 0, null);
@@ -156,6 +169,9 @@ public class PlayState extends AbstractGameState {
 		}
 	}
 
+	/**
+	 * a képernyõre érkezéskor szükséges beállítások
+	 */
 	@Override
 	public void onSet() {
 		TileMap.singleton().setData(
@@ -172,12 +188,18 @@ public class PlayState extends AbstractGameState {
 		TileMap.singleton().reset();
 	}
 
+	/**
+	 * a képernyõrõl kilépve le kell állítani a futó timereket
+	 */
 	@Override
 	public void onExit() {
 		audioHandler.stop();
 		timer.stop();
 	}
 
+	/**
+	 * billentyûzet kezelés implementációja
+	 */
 	@Override
 	public void keyPressed(KeyboardInput keyboard) {
 		if (keyboard.keyDown(KeyEvent.VK_ESCAPE)) {

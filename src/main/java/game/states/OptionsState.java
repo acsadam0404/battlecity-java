@@ -34,11 +34,18 @@ public class OptionsState extends AbstractGameState {
 
 	int currentLevel = 1;
 
+	/**
+	 * beállítja a kiválasztó alapértelmezett helyét
+	 * @param game
+	 */
 	public OptionsState(BattleCity game) {
 		super(game);
 		selection = Selection.PLAYER1;
 	}
 
+	/**
+	 * beolvassa a képeket és hangokat a fájlokból
+	 */
 	@Override
 	public void init() {
 		background = new ImageIcon("images\\full.png").getImage();
@@ -51,6 +58,9 @@ public class OptionsState extends AbstractGameState {
 		level.setColor(Color.ORANGE);
 	}
 
+	/**
+	 * kirajzolja a képernyõt
+	 */
 	@Override
 	public void draw(Graphics g) {
 		g.drawImage(background, 0, 0, null);
@@ -72,16 +82,25 @@ public class OptionsState extends AbstractGameState {
 		g.drawImage(cursor, 170, pos, null);
 	}
 
+	/**
+	 * frissíti a képernyõt
+	 */
 	@Override
 	public void update(long gameTime) {
 		super.update(gameTime);
 	}
 
+	/**
+	 * a képernyõre érkezéskor szükséges beállítások elvégzése
+	 */
 	@Override
 	public void onSet() {
 		Config.currentLevel = 1;
 	}
 
+	/**
+	 * billentyûzet kezelés implementációja
+	 */
 	@Override
 	public void keyPressed(KeyboardInput keyboard) {
 			if (keyboard.keyDownOnce(KeyEvent.VK_ESCAPE)) {

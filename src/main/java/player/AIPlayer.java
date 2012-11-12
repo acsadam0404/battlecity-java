@@ -10,7 +10,7 @@ import objects.EInitException;
 import objects.units.tanks.Tank;
 
 /**
- * 
+ * Mesterséges intelligencia által irányított játékos, ami tankokat irányít.
  * @author Ács Ádám
  *
  */
@@ -18,15 +18,28 @@ public class AIPlayer extends Player {
 	protected LocalPlayer player;
 	protected List<Tank> tanks = new ArrayList<Tank>();
 
+	/**
+	 * Visszaadja az AI tankjait.
+	 * @return
+	 */
 	public List<Tank> getTanks() {
 		return tanks;
 	}
 
+	/**
+	 * Létrehozza az AI-t, ami az adott játékos ellen van.
+	 * @param player
+	 */
 	public AIPlayer(LocalPlayer player) {
 		super();
 		this.player = player;
 	}
 
+	/**
+	 * Hozzáad egy tankot az AI tankjaihoz.
+	 * @param tank
+	 * @throws EInitException
+	 */
 	public void addTank(Tank tank) throws EInitException {
 		Tank t = tank;
 		t.init();
@@ -73,6 +86,9 @@ public class AIPlayer extends Player {
 		}
 	}
 
+	/**
+	 * Kirajzolja az AI tankjait.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		for (Tank tank : tanks) {
@@ -80,11 +96,17 @@ public class AIPlayer extends Player {
 		}
 	}
 
+	/**
+	 * Nem használt.
+	 */
 	@Override
 	public void init() {
 
 	}
 
+	/**
+	 * Alapértelmezett értékekre állítja az AI-t.
+	 */
 	@Override
 	public void reset() {
 		for (Tank tank : tanks) {

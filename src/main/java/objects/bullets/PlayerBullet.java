@@ -12,20 +12,29 @@ import objects.tiles.WaterTile;
 import components.collision.Collision;
 
 /**
- * 
+ * Egy lövedék amit a játékos használ, és a játékosra nincs hatással.
  * @author Ács Ádám
  *
  */
 public class PlayerBullet extends Bullet {
+	/**
+	 * Létrehozza a lövedéket.
+	 */
 	public PlayerBullet() {
 		super();
 	}
 
+	/**
+	 * Visszaadja a sprite típusát.
+	 */
 	@Override
 	public SpriteType getSpriteType() {
 		return SpriteType.PLAYER_BULLET;
 	}
 
+	/**
+	 * Megmondja a lövedékrõl, hogy ütközik-e.
+	 */
 	@Override
 	public boolean isColliding() {
 		boolean colliding = false;

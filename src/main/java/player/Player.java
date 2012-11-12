@@ -15,13 +15,22 @@ import objects.IGameLoop;
  * 2012.08.26.
  */
 public abstract class Player implements IGameLoop, IResetable  {
+	/**
+	 * Létrehozza a játékost.
+	 */
 	public Player() {
 		super();
 	}
 
+	/**
+	 * Frissíti a játékost.
+	 */
 	@Override
 	public abstract void update(long gameTime) ;
 
+	/**
+	 * Kirajzolja a játékost
+	 */
 	@Override
 	public abstract void draw(Graphics g);
 }

@@ -26,6 +26,10 @@ public final class BattleCity extends Game {
 
 	private KeyboardInput keyboard = new KeyboardInput();
 	
+	/**
+	 * létrehozza a játékot és beállítja a fontosabb paramétereit.
+	 * @param program
+	 */
 	public BattleCity(Program program) {
 		super(program);
 		addKeyListener(keyboard);
@@ -37,14 +41,26 @@ public final class BattleCity extends Game {
 		playState = new PlayState(this);
 	}
 
+	/**
+	 * visszaadja a játék képernyõt
+	 * @return
+	 */
 	public AbstractGameState getPlayState() {
 		return playState;
 	}
 
+	/**
+	 * visszaadja a menü képernyõt
+	 * @return
+	 */
 	public AbstractGameState getOptionsState() {
 		return optionsState;
 	}
 
+	/**
+	 * Beállítja a state-t (képernyõt) és elvégzi a szükséges lépéseket, hogy használható legyen.
+	 * @param state
+	 */
 	public void setState(AbstractGameState state) {
 		if (this.state != null) {
 			this.state.onExit();
@@ -72,6 +88,9 @@ public final class BattleCity extends Game {
 		setState(optionsState);
 	}
 
+	/**
+	 * a játékciklus frissítés része. frissíti az állapotokat
+	 */
 	@Override
 	public void update(long gameTime) {
 		if (state != null) {
@@ -81,6 +100,9 @@ public final class BattleCity extends Game {
 		}
 	}
 
+	/**
+	 * a játékciklus rajzolása. kirajzolja az aktuális képernyõt.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		if (state != null) {
@@ -88,10 +110,17 @@ public final class BattleCity extends Game {
 		}
 	}
 
+	/**
+	 * kilép a programból
+	 */
 	public void exit() {
 		program.exit();
 	}
 
+	/**
+	 * visszaadja a billentyûzetet figyelõ objektumot
+	 * @return
+	 */
 	public KeyListener getKeyboardInput() {
 		return keyboard;
 	}

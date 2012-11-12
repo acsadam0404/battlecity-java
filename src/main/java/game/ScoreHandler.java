@@ -13,7 +13,6 @@ import player.LocalPlayer;
  * A score kezelést implementálja, felelõs a rajzolásért, a kilõtt ellenségek utána pontok nyilvántartásáért 
  * és a játékosok HP-jának kiírásáért.
  * 
- * XXX talán singleton is lehetne, de most nem látok okot rá, hogy azzé tegyem. (esetleg szerializáció?)
  * 
  * @author Ács Ádám
  *
@@ -30,6 +29,12 @@ public class ScoreHandler implements IDrawable {
 	private GLabel player1Hp;
 	private GLabel player2Hp;
 	
+	/**
+	 * Az objektumnak mindenképpen tudnia kell egy playerrõl és az EnemyManager-rõl. A player2 lehet null is.
+	 * @param player1
+	 * @param player2
+	 * @param enemy
+	 */
 	public ScoreHandler(LocalPlayer player1, LocalPlayer player2, EnemyManager enemy) {
 		this.player1 = player1;
 		this.player2 = player2;
@@ -60,7 +65,9 @@ public class ScoreHandler implements IDrawable {
 		score.setFontSize(20);
 	}
 
-
+	/**
+	 * A score kirajzolása.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		player1Hp.setString(String.valueOf(player1.getTank().getHealth()));

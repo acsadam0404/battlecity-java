@@ -22,8 +22,6 @@ import components.collision.Collision;
 
 /**
  * Az ellenségeket irányítja, hozza létre és irányítja.
- * IMPROVE igazából több AIPlayer is kellene, hogy legyen
- * IMPROVE az ellenségek létrehozása nem éppen ennek az osztálynak a feladata kell, hogy legyen, inkább az AIPlayer-nek kéne implementálnia
  * 
  * @author Ács Ádám
  *
@@ -34,16 +32,26 @@ public class EnemyManager implements IGameLoop, IResetable  {
 	
 	private int killedEnemies;
 	
+	/**
+	 * Létrehozza az objektumot és beállítja a játékost, amire céloznia kell.
+	 * @param player
+	 */
 	public EnemyManager(LocalPlayer player) {
 		this.player = player;
 		enemy = new AIPlayer(player);
 	}
 
+	/**
+	 * Beolvassa a képeket.
+	 */
 	@Override
 	public void init() {
 		enemy.init();
 	}
 
+	/**
+	 * Frissíti az AI-t, lényegében itt határozzuk meg az AI mûködését.
+	 */
 	@Override
 	public void update(long gameTime) {
 		if (Config.AI_ON) {
@@ -86,16 +94,26 @@ public class EnemyManager implements IGameLoop, IResetable  {
 		}
 	}
 
+	/**
+	 * Kirajzolja az animációt.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		enemy.draw(g);
 	}
 	
+	/**
+	 * Alapértelmezett állapotok visszaállítása.
+	 */
 	@Override
 	public void reset() {
 		enemy.reset();
 	}
 
+	/**
+	 * Visszaadja, az eddig megölt ellenségeket.
+	 * @return
+	 */
 	public int getKilledEnemies() {
 		return killedEnemies;
 	}

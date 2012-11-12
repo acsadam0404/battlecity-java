@@ -33,11 +33,18 @@ public abstract class Tank extends Unit {
 	protected AudioHandler audioHandler;
 	protected Map<State, Animation> stateAnims = new HashMap<State, Animation>();
 
+	/**
+	 * Létrehozza a tankot adott pozícióra.
+	 * @param pos
+	 */
 	public Tank(Vector2 pos) {
 		super(pos);
 		bulletManager = new BulletManager(this);
 	}
 
+	/**
+	 * Beolvassa a képeket, inicializálja a hang lejátszást.
+	 */
 	@Override
 	public void init() throws EInitException {
 		super.init();
@@ -45,13 +52,23 @@ public abstract class Tank extends Unit {
 		audioHandler = new AudioHandler(new AudioData("sounddata\\tank.txt"));
 	}
 
+	/**
+	 * Visszaadja a bulletManager-t.
+	 * @return
+	 */
 	public final BulletManager getBulletManager() {
 		return bulletManager;
 	}
 
+	/**
+	 * Beállítja az osztályhoz tartozó animációkat.
+	 */
 	@Override
 	protected abstract Map<String, Animation> initClassAnimations();
 
+	/**
+	 * Visszaadja az ütközõ részeket.
+	 */
 	@Override
 	public final BoundingPart getBoundingPart() {
 		if (state.equals(State.DEAD) || state.equals(State.EXPLODING)) {
@@ -63,13 +80,25 @@ public abstract class Tank extends Unit {
 		return bPart;
 	}
 
+	/**
+	 * Megmondja, hogy ütközhet-e a tank.
+	 */
 	@Override
 	public boolean isCollidable() {
 		return true;
 	}
 
+	/**
+	 * Ütközéseket vizsgál.
+	 * @return
+	 */
 	public abstract boolean checkCollision();
 
+	/**
+	 * Megmondja egy tankról, hogy mozgatható-e adott irányba.
+	 * @param offset
+	 * @return
+	 */
 	public boolean moveAllowed(Vector2 offset) {
 		boolean moveAllowed = true;
 
@@ -92,11 +121,17 @@ public abstract class Tank extends Unit {
 		return moveAllowed;
 	}
 
+	/**
+	 * Beállítja a tank méreteit.
+	 */
 	@Override
 	protected Vector2 initSize() {
 		return new Vector2(Config.TILE_WIDTH, Config.TILE_HEIGHT);
 	}
 
+	/**
+	 * Frissíti a tankot.
+	 */
 	@Override
 	public void update(long gameTime) {
 		super.update(gameTime);
@@ -107,10 +142,18 @@ public abstract class Tank extends Unit {
 		prevState = state;
 	}
 
+	/**
+	 * Visszaadja a tank aktuális állapotát.
+	 * @return
+	 */
 	public final State getState() {
 		return state;
 	}
 
+	/**
+	 * Beállítja a tank aktuális állapotát.
+	 * @param state
+	 */
 	public void setState(State state) {
 		this.state = state;
 		switch (state) {
@@ -134,6 +177,9 @@ public abstract class Tank extends Unit {
 
 	}
 
+	/**
+	 * Kirajzolja a tankot.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		bulletManager.draw(g);
@@ -141,6 +187,9 @@ public abstract class Tank extends Unit {
 
 	}
 
+	/**
+	 * Lövést kezdeményez.
+	 */
 	public void fire() {
 		boolean fired = bulletManager.fire(getDirection());
 		if (fired) {
@@ -148,12 +197,20 @@ public abstract class Tank extends Unit {
 		}
 	}
 
+	/**
+	 * Beállítja az állapotokhoz tartozó animációkat.
+	 */
 	protected void initStateAnims() {
 		stateAnims.put(State.BASE, classAnims.getAnimation("base"));
 		stateAnims.put(State.EXPLODING, classAnims.getAnimation("exploding"));
 		stateAnims.put(State.WANDERING, classAnims.getAnimation("base"));
 	}
 
+	/**
+	 * A tank állapotait reprezentáli enumeráció.
+	 * @author Ács
+	 *
+	 */
 	public enum State {
 		EXPLODING,
 		WANDERING,
@@ -162,24 +219,34 @@ public abstract class Tank extends Unit {
 		DEAD;
 	}
 
+	/**
+	 * Mozgatja a tankot adott irányba.
+	 */
 	public void moveInDirection() {
 		if (moveAllowed(Vector2.multiply(direction.getVector2(), speed))) {
 			move(direction);
 		}
 	}
 
+	/**
+	 * Visszaadja a tankhoz tartozó játékost.
+	 * @return
+	 */
 	public Player getPlayer() {
 		return player;
 	}
 
 	/**
-	 * XXX lehet konstruktorba kéne megadni, mer így félkész objektum van csak
+	 * Beállítja a tankhoz tartozó játékost.
 	 * @param player
 	 */
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
 
+	/**
+	 * Alapértelmezet értékeket állít be a tankra.
+	 */
 	public void reset() {
 		Registry.singleton().unregister(this);
 		bulletManager.reset();

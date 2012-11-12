@@ -16,10 +16,15 @@ public enum Direction {
 	ZERO(Vector2.ZERO);
 	
 	private Vector2 dir;
+	
 	private Direction(Vector2 dir) {
 		this.dir = dir;
 	}
 
+	/**
+	 * visszaadja az irányhoz tartozó vektort
+	 * @return
+	 */
 	public Vector2 getVector2() {
 		return dir;
 	}

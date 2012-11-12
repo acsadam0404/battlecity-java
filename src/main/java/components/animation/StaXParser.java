@@ -7,7 +7,13 @@ import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.xml.stream.*;
 import javax.xml.stream.events.*;
+/*XXX ez az osztály átírásra szorul, mivel nem objektum orientáltan mûködik. */
 
+/**
+* Az animációkhoz tartozó xml parsolásáért felelõs osztály.
+* 
+* @author Ács Ádám
+*/
 public class StaXParser
 {
 	static final String IMAGE = "image";
@@ -24,6 +30,11 @@ public class StaXParser
 	static final String COLS = "cols";
 	private BufferedImage image = null;
 
+	/**
+	 * beolvassa az animáció xml-t és elõállítja belõle az animációt.
+	 * @param animationFile
+	 * @throws IOException
+	 */
 	public void readConfig(String animationFile) throws IOException {
 		boolean sheet;
 		try {
@@ -124,6 +135,11 @@ public class StaXParser
 		}
 	}
 
+	/**
+	 * beállítja a factory állapotát, hogy az képes legyen animációt létrehozni
+	 * @param file
+	 * @throws IOException
+	 */
 	public static void createSheet(String file) throws IOException {
 		int num = 0;
 		int c = AnimationFactory.count;

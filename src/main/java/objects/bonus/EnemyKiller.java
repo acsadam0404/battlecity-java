@@ -20,15 +20,25 @@ import components.animation.AnimationFactory;
  *
  */
 public class EnemyKiller extends Bonus {
+	/**
+	 * Létrehozza a bónuszt megadott pozícióra.
+	 * @param pos
+	 */
 	public EnemyKiller(Vector2 pos) {
 		super(pos);
 	}
 
+	/**
+	 * Visszaadja a bónusz hatóidejét.
+	 */
 	@Override
 	protected int getBonusTime() {
 		return 0;
 	}
 
+	/**
+	 * Megöli az összes ellenséget a mapon.
+	 */
 	@Override
 	public void applyEffect(Player player) {
 		List<Sprite> enemies = Registry.singleton().getEnemyTankRegistry();
@@ -38,11 +48,17 @@ public class EnemyKiller extends Bonus {
 		}
 	}
 
+	/**
+	 * Nem szükséges, a bónusz rögtön hat és el is múlik.
+	 */
 	@Override
 	public void removeEffect(Player player) {
 		/* nincs szükség rá */
 	}
 
+	/**
+	 * Beállítja a bónusz animációit.
+	 */
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
 		Map<String, Animation> anims = new HashMap<String, Animation>();

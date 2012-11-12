@@ -7,9 +7,6 @@ import math.Vector2;
 /**
  * Itt van minden kívülrõl jövõ config nyilvántartva.
  * 
- * IMPROVE fájlból olvasni ezeket.
- * IMPROVE ezek alapján mûködjön minden (képek skálázása fõleg)
- * 
  * @author Ács Ádám
  * 2012.07.18.
  */

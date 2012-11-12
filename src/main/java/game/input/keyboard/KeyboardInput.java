@@ -22,6 +22,9 @@ public class KeyboardInput implements KeyListener {
 	// Polled keyboard state
 	private KeyState[] keys = null;
 
+	/**
+	 * létrehozza a billentyûzetet és beállítja az alapértelmezett állapotot
+	 */
 	public KeyboardInput() {
 		currentKeys = new boolean[KEY_COUNT];
 		keys = new KeyState[KEY_COUNT];
@@ -30,6 +33,9 @@ public class KeyboardInput implements KeyListener {
 		}
 	}
 
+	/**
+	 * polling metódus, ez kéri le a lenyomott gombokat a rendszertõl.
+	 */
 	public synchronized void poll() {
 		for (int i = 0; i < KEY_COUNT; ++i) {
 			// Set the key state 
@@ -47,15 +53,28 @@ public class KeyboardInput implements KeyListener {
 		}
 	}
 
+	/**
+	 * megmondja egy gombról, hogy le van-e nyomva
+	 * @param keyCode
+	 * @return
+	 */
 	public boolean keyDown(int keyCode) {
 		return keys[keyCode] == KeyState.ONCE ||
 				keys[keyCode] == KeyState.PRESSED;
 	}
 
+	/**
+	 * megmondja egy gombról, hogy le lett e nyomva. Lenyomva tartott gombokat csak egyszer számol.
+	 * @param keyCode
+	 * @return
+	 */
 	public boolean keyDownOnce(int keyCode) {
 		return keys[keyCode] == KeyState.ONCE;
 	}
 
+	/**
+	 * megmondja egy gombról hogy megnyomták-e
+	 */
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
@@ -64,6 +83,9 @@ public class KeyboardInput implements KeyListener {
 		}
 	}
 
+	/**
+	 * megmondja egy gombról, hogy felengedték-e
+	 */
 	@Override
 	public synchronized void keyReleased(KeyEvent e) {
 		int keyCode = e.getKeyCode();
@@ -72,6 +94,9 @@ public class KeyboardInput implements KeyListener {
 		}
 	}
 
+	/**
+	 * nincs szükség rá.
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Not needed

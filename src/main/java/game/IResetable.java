@@ -7,5 +7,8 @@ package game;
  *
  */
 public interface IResetable {
+	/**
+	 * visszaállítja az objektumot a kezdõ állapotra
+	 */
 	public void reset();
 }

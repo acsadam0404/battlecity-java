@@ -17,20 +17,31 @@ import objects.bullets.Bullet;
 import components.collision.Collision;
 
 /**
- * 
+ * Betonfal, amin csak a superbullet képes áttörni.
  * @author Ács Ádám
  *
  */
 public class ConcreteWallTile extends WallTile {
+	/**
+	 * Létrehozza az objektumot adott pozícióra.
+	 * @param posX
+	 * @param posY
+	 */
 	public ConcreteWallTile(int posX, int posY) {
 		super(posX, posY);
 	}
 
+	/**
+	 * Visszaadja a sprite típusát.
+	 */
 	@Override
 	public SpriteType getSpriteType() {
 		return SpriteType.CONCRETEWALL_TILE;
 	}
 
+	/**
+	 * Beolvassa a képeket.
+	 */
 	@Override
 	public void init() throws EInitException {
 		useAnimation = false;
@@ -43,6 +54,9 @@ public class ConcreteWallTile extends WallTile {
 		}
 	}
 
+	/**
+	 * Ellenõrzi az ütközéseket.
+	 */
 	@Override
 	public List<Rectangle> checkCollision() {
 		if (isCollidable()) {

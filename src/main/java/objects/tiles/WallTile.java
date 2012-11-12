@@ -22,7 +22,7 @@ import objects.SpriteType;
 import components.collision.BoundingPart;
 
 /**
- * 
+ * A falat megvalósító osztály, ami 4 ütközõ részbõl áll és a lövedékekkel át lehet törni.
  * @author Ács Ádám
  *
  */
@@ -34,6 +34,11 @@ public class WallTile extends Tile {
 	protected Rectangle bottomLeft;
 	protected BufferedImage wholeImage;
 
+	/**
+	 * Létrehoz egy falat a megadott pozícióra, beállítja az ütközõ részeket.
+	 * @param posX
+	 * @param posY
+	 */
 	public WallTile(int posX, int posY) {
 		super(posX, posY);
 
@@ -46,11 +51,17 @@ public class WallTile extends Tile {
 		topRight = new Rectangle(posX + newSizeX, posY, newSizeX, newSizeY);
 	}
 
+	/**
+	 * Visszaadja a sprite típusát.
+	 */
 	@Override
 	public SpriteType getSpriteType() {
 		return SpriteType.WALL_TILE;
 	}
 
+	/**
+	 * Beolvassa a képeket.
+	 */
 	@Override
 	public void init() throws EInitException {
 		useAnimation = false;
@@ -65,11 +76,17 @@ public class WallTile extends Tile {
 		}
 	}
 
+	/**
+	 * Frissíti a tile-t.
+	 */
 	@Override
 	public void update(long gameTime) {
 		super.update(gameTime);
 	}
 
+	/**
+	 * Kirajzolja a falat.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
@@ -80,6 +97,9 @@ public class WallTile extends Tile {
 		}
 	}
 
+	/**
+	 * Ütközéseket vizsgál.
+	 */
 	@Override
 	public List<Rectangle> checkCollision() {
 		List<Rectangle> collidingRects = super.checkCollision();
@@ -91,11 +111,17 @@ public class WallTile extends Tile {
 		return collidingRects;
 	}
 
+	/**
+	 * Visszaadja, hogy az objektum melyik rétegen helyezkedik el.
+	 */
 	@Override
 	public int getLayerNumber() {
 		return 1;
 	}
 
+	/**
+	 * Visszaállítja az alapértelmezett értékekre a falat.
+	 */
 	@Override
 	public void reset() {
 		List<Rectangle> rects = new ArrayList<Rectangle>();

@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import objects.IGameLoop;
 
 /**
- * 
+ * Az animációk megjelenítéséért felelõs osztály. Ha egyszerû képet akarunk, akkor is lehet használni, csak 1 képet kell megadni neki.
+ * Létrehozása után bármikor adhatunk neki újabb képeket.
+ *
  * @author Ács Ádám
  * 
  */
@@ -31,23 +33,32 @@ public class Animation implements IGameLoop {
 	}
 
 	/**
-	 * XXX ez félkész lesz akkor
 	 * így is létrehozhatjuk, de késõbb adni kell neki egy IAnimatable obkektumot, hogy mûködjön 
 	 */
 	public Animation() {
-		this(null);
+		this(null); /* XXX félkész objektum lesz */
 	}
 
+	/**
+	* Az animáció konstruktora, ami megmondja, hogy hányszor játszódjon le az anim
+	*/
 	public Animation(int maxCount) {
 		this(null);
 		this.maxCount = maxCount;
 	}
 
+	/**
+	* konstruktor, ami megmondja, hogy hányszor játszódjon le az anim és a container-t is beállítja
+	*/
 	public Animation(IAnimatable container, int maxCount) {
 		this.container = container;
 		this.maxCount = maxCount;
 	}
 
+	/**
+	 * beállítja az animációhoz tartozó objektumot.
+	 * @param container
+	 */
 	public void setContainer(IAnimatable container) {
 		this.container = container;
 	}
@@ -71,6 +82,9 @@ public class Animation implements IGameLoop {
 		scenes.get(0).pic = scenes.get(0).getPicCopy();
 	}
 
+	/**
+	 * leállítja az animációt
+	 */
 	public void stop() {
 		running = false;
 		scenes.get(0).pic = null;
@@ -97,12 +111,18 @@ public class Animation implements IGameLoop {
 		return scenes.get(x);
 	}
 
+	/**
+	 * az elejére állítja és elindítja az animációt
+	 */
 	@Override
 	public void init() {
 		count = 0;
 		start();
 	}
 
+	/**
+	 * jelenetet léptet és vár.
+	 */
 	@Override
 	public void update(long gameTime) {
 		if (running) {
@@ -125,6 +145,9 @@ public class Animation implements IGameLoop {
 		}
 	}
 
+	/**
+	 * kirajzolja az animációt.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		if (getImage() != null) {
@@ -146,6 +169,10 @@ public class Animation implements IGameLoop {
 		}
 	}
 
+	/**
+	 * forgatásért felelõs metódus
+	 * @param theta
+	 */
 	public void rotate(double theta) {
 		BufferedImage source = getImage();
 		if (source != null) {
@@ -154,10 +181,18 @@ public class Animation implements IGameLoop {
 		}
 	}
 
+	/**
+	 * az animáció framejeinek száma
+	 * @return
+	 */
 	public final int getMaxCount() {
 		return maxCount;
 	}
 
+	/**
+	 * beállítja az animáció framejeinek számát (nem lehet kisebb mint 0)
+	 * @param maxCount
+	 */
 	public final void setMaxCount(int maxCount) {
 		if (maxCount < 1) {
 			throw new IllegalArgumentException("maxcount cant be < 1");
@@ -166,18 +201,34 @@ public class Animation implements IGameLoop {
 		this.maxCount = maxCount;
 	}
 
+	/**
+	 * megmondja az animációról, hogy épp fut-e
+	 * @return
+	 */
 	public final boolean isRunning() {
 		return running;
 	}
 
+	/**
+	 * beállít egy affin transzformációt
+	 * @param affineTransform
+	 */
 	public final void setAffineTransform(AffineTransform affineTransform) {
 		this.affineTransform = affineTransform;
 	}
 
+	/**
+	 * visszaadja a kép középpontjának x koordinátáját
+	 * @return
+	 */
 	public double getImageCenterX() {
 		return container.getPos().getX() + getImage().getWidth() / 2;
 	}
 
+	/**
+	 * visszaadja a kép középpontjának y koordinátáját
+	 * @return
+	 */
 	public double getImageCenterY() {
 		return container.getPos().getY() + getImage().getHeight() / 2;
 	}

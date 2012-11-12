@@ -5,8 +5,8 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 /**
- * A main metódust tartalmazó osztály. Ez a program kiindulási pontja. 
- * Beállítja az parancssori paramétereket, elindítja a játékot és láthatóvá teszi.
+ * A main metódust tartalmazó osztály. Ez a program kiindulási pontja. Beállítja
+ * az parancssori paramétereket, elindítja a játékot és láthatóvá teszi.
  * JFrame-bõl származik, tehát a fõ container is ez az osztály.
  * 
  * @author Ács Ádám
@@ -21,7 +21,9 @@ public class Program extends JFrame {
 	}
 
 	/**
-	 * A program belépési pontja. Egyelõre nem támogatja a parancssori paramétereket.
+	 * A program belépési pontja. Egyelõre nem támogatja a parancssori
+	 * paramétereket.
+	 * 
 	 * @param args
 	 */
 	public static void main(String args[]) {
@@ -30,7 +32,7 @@ public class Program extends JFrame {
 				Config.AUDIO_ON = false;
 			}
 		}
-		
+
 		Program program = new Program();
 
 		game = new BattleCity(program);
@@ -38,19 +40,23 @@ public class Program extends JFrame {
 
 		new Thread(game).start();
 		program.getContentPane().add(game);
-		program.setPreferredSize(new Dimension(Config.FRAME_WIDTH, Config.FRAME_HEIGHT));
+		program.setPreferredSize(new Dimension(Config.FRAME_WIDTH,
+				Config.FRAME_HEIGHT));
 		program.setSize(new Dimension(Config.FRAME_WIDTH, Config.FRAME_HEIGHT));
 		program.setDefaultCloseOperation(EXIT_ON_CLOSE);
-//		program.setUndecorated(true); /* FIXME ha bekapcsolom van baj eléggé.. szerintem appletként emiatt nem lehetne megjeleníteni*/
+		// program.setUndecorated(true); /* FIXME ha bekapcsolom van baj
+		// eléggé.. szerintem appletként emiatt nem lehetne megjeleníteni*/
 		program.setVisible(true);
 		program.addKeyListener(game.getKeyboardInput());
 		program.setLayout(null);
 		program.setResizable(false);
 		program.setTitle("Battle City");
-		
+
 	}
 
-
+	/**
+	 * kilép a programból.
+	 */
 	public void exit() {
 		System.exit(0);
 	}

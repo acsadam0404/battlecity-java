@@ -23,6 +23,10 @@ public abstract class Game extends JPanel implements Runnable, IGameLoop {
 	protected Graphics bufferGraphics;
 	protected Image offscreen;
 
+	/**
+	 * beállítja a játék fontosabb paramétereit
+	 * @param program
+	 */
 	protected Game(Program program) {
 		this.program = program;
 		setBackground(Color.GREEN);
@@ -32,23 +36,23 @@ public abstract class Game extends JPanel implements Runnable, IGameLoop {
 
 	}
 
+	/**
+	 * double buffering implementációja.
+	 */
 	private void initBuffering() {
 		offscreen = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 		bufferGraphics = offscreen.getGraphics();
 	}
 
+	/**
+	 * leállítja a játékciklust
+	 */
 	public void stopGame() {
 		running = false;
 	}
 
-	@Override
-	public void addNotify() {
-		super.addNotify();
-	
-	}
-
 	/**
-	 *  update, render, sleep 
+	 *  update, render, sleep ciklus implementációja
 	 */
 	@Override
 	public void run() {
@@ -98,6 +102,9 @@ public abstract class Game extends JPanel implements Runnable, IGameLoop {
 		update(gameTime);
 	}
 
+	/**
+	 * itt rajzolunk, de az alosztályokban csak a draw-ot kell felülírnunk.
+	 */
 	@Override
 	public void paint(Graphics g) {
 		bufferGraphics.clearRect(0, 0, getWidth(), getHeight());
@@ -106,6 +113,10 @@ public abstract class Game extends JPanel implements Runnable, IGameLoop {
 
 	}
 
+	/**
+	 * megmondja, hogy fut-e a játék
+	 * @return
+	 */
 	public boolean isGameEnd() {
 		return !running;
 	}

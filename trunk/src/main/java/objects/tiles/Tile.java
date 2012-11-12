@@ -37,26 +37,37 @@ public abstract class Tile extends Sprite implements IResetable {
 	/**
 	 * Hányadik rétegen van a sprite. Ez hasznos, hogy egymást elfedõ tile-okat használhassunk.
 	 * 
-	 * XXX ehelyett egy globális spritemanager kellene, ami kirajzol minden sprite-ot a megfelelõ rétegre.
 	 */
 	public abstract int getLayerNumber();
 
+	/**
+	 * Képek beolvasása és ütközõ rész beállítása.
+	 */
 	@Override
 	public void init() throws EInitException {
 		boundingPart = new BoundingPart(new Rectangle(pos.getX(), pos.getY(), size.getX(), size.getY()));
 		super.init();
 	}
 
+	/**
+	 * Tile kirajzolása.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
 	}
 
+	/**
+	 * Tile string reprezentációja.
+	 */
 	@Override
 	public String toString() {
 		return "tile: " + getPos().toString();
 	}
 
+	/**
+	 * Tile frissítése.
+	 */
 	@Override
 	public void update(long gameTime) {
 		for (int i = collidingRects.size() - 1; i >= 0; i--) {
@@ -69,6 +80,10 @@ public abstract class Tile extends Sprite implements IResetable {
 		checkCollision();
 	}
 
+	/**
+	 * Ütközések vizsgálata.
+	 * @return
+	 */
 	public List<Rectangle> checkCollision() {
 		if (isCollidable()) {
 			List<Rectangle> rects = boundingPart.getRects();
@@ -86,6 +101,9 @@ public abstract class Tile extends Sprite implements IResetable {
 		return collidingRects;
 	}
 
+	/**
+	 * Visszaadja az ütközõ részt.
+	 */
 	@Override
 	public BoundingPart getBoundingPart() {
 		if (isCollidable()) {
@@ -95,11 +113,17 @@ public abstract class Tile extends Sprite implements IResetable {
 		return new BoundingPart(Config.OFFSCREEN_RECT);
 	}
 
+	/**
+	 * Beállítja a tile méretét.
+	 */
 	@Override
 	protected Vector2 initSize() {
 		return new Vector2(Config.TILE_WIDTH, Config.TILE_HEIGHT);
 	}
 
+	/**
+	 * Beállítja az osztályhoz tartozó animációkat.
+	 */
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
 		return null;

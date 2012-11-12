@@ -28,6 +28,12 @@ public class MapData {
 	private int mapWidth;
 	private int mapHeight;
 
+	/**
+	 * létrehozza az objektumot egy fájlból
+	 * @param fileName
+	 * @throws ENoSuchTileException
+	 * @throws EInitException
+	 */
 	public MapData(String fileName) throws ENoSuchTileException, EInitException {
 		readFromFile(fileName);
 	}
@@ -66,18 +72,36 @@ public class MapData {
 		}
 	}
 
+	/**
+	 * visszaadja a i, j helyen lévõ tile-t
+	 * @param i
+	 * @param j
+	 * @return
+	 */
 	Tile getTile(int i, int j) {
 		return tileMap[i][j];
 	}
 
+	/**
+	 * visszaadja a map magasságát
+	 * @return
+	 */
 	int getMapHeight() {
 		return mapHeight;
 	}
 
+	/**
+	 * visszaadja a map szélességét
+	 * @return
+	 */
 	int getMapWidth() {
 		return mapWidth;
 	}
 
+	/**
+	 * visszzad egy random spawn pontot
+	 * @return
+	 */
 	public Vector2 getRandomSpawnPoint() {
 		Random rnd = new Random();
 		return spawnPoints.get(rnd.nextInt(spawnPoints.size()));

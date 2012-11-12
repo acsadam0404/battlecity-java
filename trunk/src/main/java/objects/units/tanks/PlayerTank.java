@@ -18,13 +18,17 @@ import components.animation.AnimationFactory;
 import components.collision.Collision;
 
 /**
- * 
+ * A játékos tankját megvalósító osztály.
  * @author Ács Ádám
  *
  */
 public class PlayerTank extends Tank implements IResetable {
 	private AffineTransform at;
 
+	/**
+	 * Létrehozza az objektumot adott pozícióra, beállítja az értékeit.
+	 * @param pos
+	 */
 	public PlayerTank(Vector2 pos) {
 		super(pos);
 		maxHealth = 1;
@@ -32,11 +36,17 @@ public class PlayerTank extends Tank implements IResetable {
 		speed = 4f;
 	}
 
+	/**
+	 * Beolvassa a képeket.
+	 */
 	@Override
 	public void init() throws EInitException {
 		super.init();
 	}
 
+	/**
+	 * Mozgatja a tankot adott irányba.
+	 */
 	@Override
 	public void move(Direction dir) {
 		if (anim != null) {
@@ -66,17 +76,26 @@ public class PlayerTank extends Tank implements IResetable {
 		}
 	}
 
+	/**
+	 * Frissíti a tankot.
+	 */
 	@Override
 	public void update(long gameTime) {
 		super.update(gameTime);
 
 	}
 
+	/**
+	 * Kirajzolja a tankot.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
 	}
 
+	/**
+	 * Beállítja az osztályhoz tartozó animációkat.
+	 */
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
 		Map<String, Animation> anims = new HashMap<String, Animation>();
@@ -99,11 +118,17 @@ public class PlayerTank extends Tank implements IResetable {
 		return anims;
 	}
 
+	/**
+	 * Visszaadja a sprite típusát.
+	 */
 	@Override
 	public SpriteType getSpriteType() {
 		return SpriteType.PLAYER_TANK;
 	}
 
+	/**
+	 * Megvizsgálja az ütközéseket.
+	 */
 	@Override
 	public boolean checkCollision() {
 		if (!Collision.intersects(this, Registry.singleton().getEnemyBulletRegistry()).isEmpty()) {
@@ -114,10 +139,17 @@ public class PlayerTank extends Tank implements IResetable {
 		return true;
 	}
 
+	/**
+	 * Beállítja a tankra a superbullet-et.
+	 * @param superBullet
+	 */
 	public void setSuperBullet(boolean superBullet) {
 		bulletManager.getBullet().setSuperBullet(superBullet);
 	}
 
+	/**
+	 * Visszaállítja a tankot alapértelmezett értékeire.
+	 */
 	@Override
 	public void reset() {
 		setState(State.BASE);

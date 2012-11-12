@@ -8,5 +8,9 @@ import java.awt.Graphics;
  * 2012.07.12.
  */
 public interface IDrawable {
+	/**
+	 * rajzolást itt kell megvalósítani
+	 * @param g
+	 */
 	public void draw(Graphics g);
 }

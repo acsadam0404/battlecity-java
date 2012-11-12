@@ -21,35 +21,58 @@ import objects.units.tanks.PlayerTank;
 public class LocalPlayer extends Player implements IKeyboardControlled{
 	private PlayerTank tank;
 
+	/**
+	 * Létrehozza a játékost.
+	 */
 	public LocalPlayer() {
 		super();
 		tank = new PlayerTank(new Vector2(200, 200));
 		tank.setPlayer(this);
 	}
 
+	/**
+	 * Visszaadja a játékos tankját.
+	 * @return
+	 */
 	public PlayerTank getTank() {
 		return tank;
 	}
 
+	/**
+	 * Visszaadja a tank középpontját.
+	 * @return
+	 */
 	public Vector2 getTankCenter() {
 		return tank.getCenter();
 	}
 
+	/**
+	 * Beolvassa a képeket.
+	 */
 	@Override
 	public void init() throws EInitException {
 		tank.init();
 	}
 
+	/**
+	 * Kirajzolja a tankot.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		tank.draw(g);
 	}
 
+	/**
+	 * Frissíti a tankot.
+	 */
 	@Override
 	public void update(long gameTime) {
 		tank.update(gameTime);
 	}
 
+	/**
+	 * Kezeli az inputot.
+	 */
 	@Override
 	public void keyPressed(KeyboardInput keyboard) {
 			if (keyboard.keyDown(KeyEvent.VK_UP)) {
@@ -69,6 +92,9 @@ public class LocalPlayer extends Player implements IKeyboardControlled{
 			}
 	}
 
+	/**
+	 * Alapértelmezett értékekre állítja a játékost.
+	 */
 	@Override
 	public void reset() {
 		tank.reset();

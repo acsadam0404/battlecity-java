@@ -34,18 +34,30 @@ public final class BonusManager implements IGameLoop, IResetable {
 	private List<Bonus> bonuses = new ArrayList<Bonus>();
 	private Bonus active;
 
+	/**
+	 * Létrehozza a BonusManager-t.
+	 */
 	public BonusManager() {
 		super();
 	}
 
+	/**
+	 * Leállítja a timer-t.
+	 */
 	public void stopTimer() {
 		timer.stop();
 	}
 
+	/**
+	 * Inaktiválja az aktív bónuszt.
+	 */
 	public void inactivateBonus() {
 		active = null;
 	}
 
+	/**
+	 * Beolvassa a képeket.
+	 */
 	@Override
 	public void init() throws EInitException {
 		Bonus superBullet = new SuperBullet(Config.OFFSCREEN);
@@ -58,6 +70,9 @@ public final class BonusManager implements IGameLoop, IResetable {
 		bonuses.add(enemyKiller);
 	}
 
+	/**
+	 * Frissíti a bónusz állapotát.
+	 */
 	@Override
 	public void update(long gameTime) {
 		Random rnd = new Random();
@@ -80,6 +95,9 @@ public final class BonusManager implements IGameLoop, IResetable {
 		}
 	}
 
+	/**
+	 * Kirajzolja a bónuszt.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		if (active != null) {
@@ -87,6 +105,9 @@ public final class BonusManager implements IGameLoop, IResetable {
 		}
 	}
 
+	/**
+	 * Alapértelmezett értékre állítja a bónuszt.
+	 */
 	@Override
 	public void reset() {
 		active = null;

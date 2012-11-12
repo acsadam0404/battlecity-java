@@ -8,5 +8,9 @@ import game.input.keyboard.KeyboardInput;
  *
  */
 public interface IKeyboardControlled {
+	/**
+	 * megmondja, hogy keypress-kor milyen logika érvényesül
+	 * @param keyboard
+	 */
 	public void keyPressed(KeyboardInput keyboard);
 }

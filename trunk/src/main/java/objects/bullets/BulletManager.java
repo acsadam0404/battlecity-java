@@ -8,8 +8,10 @@ import math.Vector2;
 import objects.*;
 import objects.units.tanks.*;
 
+
 /**
- * 
+ * A lövedékek kezelésérõl gondoskodik. Minden tankhoz egy lövedék tartozik, ezért csak azt kell kezelnie.
+ *  Megvalósítja a kilövést és a lövedékkel végezhetõ egyéb mûveleteket.
  * @author Ács Ádám
  *
  */
@@ -18,6 +20,10 @@ public class BulletManager implements IGameLoop {
 	private boolean fired;
 	private Tank tank;
 	
+	/**
+	 * Létrehozza az objektumot és beállítja a hozzárendelt tankot.
+	 * @param tank
+	 */
 	public BulletManager(Tank tank) {
 		this.tank = tank;
 		if (tank instanceof PlayerTank) {
@@ -28,6 +34,11 @@ public class BulletManager implements IGameLoop {
 		}
 	}
 	
+	/**
+	 * A lövedék kilövése direction irányba.
+	 * @param direction
+	 * @return
+	 */
 	public boolean fire(Direction direction) {
 		if (!fired) {
 			switch (direction) {
@@ -59,6 +70,9 @@ public class BulletManager implements IGameLoop {
 		return false;
 	}
 	
+	/**
+	 * Frissíti az objektumot.
+	 */
 	@Override
 	public void update(long gameTime) {
 		if (fired) {
@@ -70,11 +84,17 @@ public class BulletManager implements IGameLoop {
 		}
 	}
 
+	/**
+	 * Beolvassa a bullet-hez tartozó képeket.
+	 */
 	@Override
 	public void init() throws EInitException {
 		bullet.init();
 	}
 
+	/**
+	 * Kirajzolja a lövedéket.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		if (fired) {
@@ -82,14 +102,25 @@ public class BulletManager implements IGameLoop {
 		}
 	}
 	
+	/**
+	 * Visszaadja a lövedéket.
+	 * @return
+	 */
 	public Bullet getBullet() {
 		return bullet;
 	}
 
+	/**
+	 * Megmondja egy bullet-rõl, hogy kilõtték-e.
+	 * @return
+	 */
 	public boolean isFired() {
 		return fired;
 	}
 
+	/**
+	 * Alapértelmezettre állítja a lövedéket.
+	 */
 	public void reset() {
 		bullet.reset();
 	}

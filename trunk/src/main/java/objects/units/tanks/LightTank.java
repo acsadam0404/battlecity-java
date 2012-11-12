@@ -12,11 +12,15 @@ import components.animation.Animation;
 import components.animation.AnimationFactory;
 
 /**
- * 
+ * Egy ellenségse tank típus kevés élettel és nagy sebességgel.
  * @author Ács Ádám
  *
  */
 public class LightTank extends EnemyTank {
+	/**
+	 * Létrehozza az objektumot adott pozícióra.
+	 * @param pos
+	 */
 	public LightTank(Vector2 pos) {
 		super(pos);
 		maxHealth = 1;
@@ -24,6 +28,9 @@ public class LightTank extends EnemyTank {
 		speed = 2f;
 	}
 
+	/**
+	 * Mozgatja az objektumot adott irányban.
+	 */
 	@Override
 	public void move(Direction dir) {
 		Vector2 offset = Vector2.multiply(dir.getVector2(), speed);
@@ -33,6 +40,9 @@ public class LightTank extends EnemyTank {
 		}
 	}
 
+	/**
+	 * Beállítja az osztályhoz tartozó animációkat.
+	 */
 	@Override
 	protected Map<String, Animation> initClassAnimations() {
 		Map<String, Animation> anims = new HashMap<String, Animation>();
@@ -47,6 +57,9 @@ public class LightTank extends EnemyTank {
 		return anims;
 	}
 
+	/**
+	 * Frissíti az objektumot az állapotának megfelelõen.
+	 */
 	@Override
 	public void update(long gameTime) {
 		super.update(gameTime);
@@ -70,11 +83,17 @@ public class LightTank extends EnemyTank {
 		}
 	}
 
+	/**
+	 * Beolvassa a képeket.
+	 */
 	@Override
 	public void init() throws EInitException {
 		super.init();
 	}
 
+	/**
+	 * Visszaadja a sprite típusát.
+	 */
 	@Override
 	public SpriteType getSpriteType() {
 		return SpriteType.ENEMY_TANK;

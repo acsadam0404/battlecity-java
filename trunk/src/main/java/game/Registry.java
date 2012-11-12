@@ -7,11 +7,12 @@ import objects.Sprite;
 import objects.SpriteType;
 
 /**
- * Egy központi registry, amibe minden Sprite regisztrálja magát. Lehetõvé teszi a Sprite-ok globális elérését.
- * Singleton minta az esetleges késõbbi szerializáció miatt.
+ * Egy központi registry, amibe minden Sprite regisztrálja magát. Lehetõvé teszi
+ * a Sprite-ok globális elérését. Singleton minta az esetleges késõbbi
+ * szerializáció miatt.
  * 
  * @author Ács Ádám
- *
+ * 
  */
 public class Registry {
 	private static Registry singleton = new Registry();
@@ -28,20 +29,37 @@ public class Registry {
 	private List<Sprite> tileRegistry = new ArrayList<Sprite>();
 	private List<Sprite> defaultRegistry = new ArrayList<Sprite>();
 
+	/**
+	 * singleton minta
+	 * 
+	 * @return
+	 */
 	public static Registry singleton() {
 		return singleton;
 	}
 
+	/**
+	 * a Sprite-okat beregisztráljuk a registry-be és utána globálisan
+	 * elérhetõek
+	 * 
+	 * @param obj
+	 */
 	public void register(Sprite obj) {
 		getRegistryForType(obj.getSpriteType()).add(obj);
 	}
 
+	/**
+	 * a regisztrált sprite-okat kivesszük a registry-bõl
+	 * 
+	 * @param obj
+	 */
 	public void unregister(Sprite obj) {
 		getRegistryForType(obj.getSpriteType()).remove(obj);
 	}
 
 	/**
 	 * visszaadja a típushoz használt registry-t
+	 * 
 	 * @param spriteType
 	 * @return
 	 */
@@ -89,30 +107,64 @@ public class Registry {
 		return registry;
 	}
 
+	/**
+	 * visszaadja a játékos tankok registry-jét
+	 * 
+	 * @return
+	 */
 	public List<Sprite> getPlayerTankRegistry() {
 		return playerTankRegistry;
 	}
 
+	/**
+	 * visszaadja a játékos golyójainak registry-jét
+	 * 
+	 * @return
+	 */
 	public List<Sprite> getPlayerBulletRegistry() {
 		return playerBulletRegistry;
 	}
 
+	/**
+	 * visszaadja az ellenséges tankok registry-jét
+	 * 
+	 * @return
+	 */
 	public List<Sprite> getEnemyTankRegistry() {
 		return enemyTankRegistry;
 	}
 
+	/**
+	 * visszaadja az ellenségek golyóinak registry-jét
+	 * 
+	 * @return
+	 */
 	public List<Sprite> getEnemyBulletRegistry() {
 		return enemyBulletRegistry;
 	}
 
+	/**
+	 * visszaadja a bónuszok registry-jét
+	 * 
+	 * @return
+	 */
 	public List<Sprite> getBonusRegistry() {
 		return bonusRegistry;
 	}
 
+	/**
+	 * visszaadja a tile-ok registry-jét
+	 * 
+	 * @return
+	 */
 	public List<Sprite> getTileRegistry() {
 		return tileRegistry;
 	}
 
+	/**
+	 * visszaadja az alapértelmezett registry-t
+	 * @return
+	 */
 	public List<Sprite> getDefaultRegistry() {
 		return defaultRegistry;
 	}

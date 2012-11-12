@@ -11,7 +11,7 @@ import components.animation.*;
 import components.collision.ICollidable;
 
 /**
- * superclassa a kirajzolható cuccoknak
+ * a kirajzolható objektumok õsosztálya. Megvalósítja az animáció kezelést
  * @author Ács Ádám
  *
  */
@@ -40,6 +40,10 @@ public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
 		}
 	}
 
+	/**
+	 * Létrehoz egy sprite-ot a megadott pozícióra.
+	 * @param pos
+	 */
 	public Sprite(Vector2 pos) {
 		this.pos = pos;
 	}
@@ -52,6 +56,9 @@ public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
 	public abstract SpriteType getSpriteType();
 	
 	
+	/**
+	 * Frissíti az animációt.
+	 */
 	@Override
 	public void update(long gameTime) {
 		/* szükséges a null check, mert nem minden leszármazott fogja használni az animot */
@@ -60,6 +67,9 @@ public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
 		}
 	}
 	
+	/**
+	 * Kirajzolja az animációt.
+	 */
 	@Override
 	public void draw(Graphics g) {
 		/* szükséges a null check, mert nem minden leszármazott fogja használni az animot */
@@ -68,6 +78,9 @@ public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
 		}
 	}
 	
+	/**
+	 * Beolvassa az animációt és eltárolja.
+	 */
 	@Override
 	public void init() throws EInitException {
 		if (useAnimation) {
@@ -82,27 +95,54 @@ public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
 		Registry.singleton().register(this);
 	}
 	
+	/**
+	 * Visszaadja a sprite középpontját.
+	 * @return
+	 */
 	public Vector2 getCenter() {
 		return new Vector2(pos.getX() + size.getX() / 2, pos.getY() + size.getY() / 2);
 	}
 	
+	/**
+	 * Beállítja a sprite méretét.
+	 * @return
+	 */
 	protected abstract Vector2 initSize();
 
+	/**
+	 * Beállítja az osztályhoz tartozó animációkat.
+	 * @return
+	 */
 	protected abstract Map<String, Animation> initClassAnimations();
 	
+	/**
+	 * Visszaadja a sprite pozícióját.
+	 */
 	@Override
 	public Vector2 getPos() {
 		return pos;
 	}
 	
+	/**
+	 * Visszaadja a sprite méretét.
+	 * @return
+	 */
 	public final Vector2 getSize() {
 		return size;
 	}
 
+	/**
+	 * Beállítja a sprite pozícióját.
+	 * @param pos
+	 */
 	public void setPos(Vector2 pos) {
 		this.pos = pos;
 	}
 	
+	/**
+	 * Beállítja az aktuális animációt.
+	 * @param anim
+	 */
 	public void setAnimation(Animation anim) {
 		this.anim = anim;
 		if (anim != null) {
@@ -110,11 +150,17 @@ public abstract class Sprite implements IGameLoop, IAnimatable, ICollidable {
 		}
 	}
 
+	/**
+	 * Megmondja az objektumról, hogy ütközhet-e.
+	 */
 	@Override
 	public boolean isCollidable() {
 		return collidable;
 	}
 
+	/**
+	 * Megmondja az objektumról, hogy átmehet-e rajta a golyó.
+	 */
 	@Override
 	public boolean isPassableByBullet() {
 		return passableByBullet;

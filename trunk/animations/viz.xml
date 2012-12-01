@@ -7,4 +7,62 @@
 		<posx>0</posx>
 		<posy>0</posy>
 	</image>
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\viz1.png</file>
+		<width>32</width>
+		<height>32</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\viz2.png</file>
+		<width>32</width>
+		<height>32</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\viz3.png</file>
+		<width>32</width>
+		<height>32</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\viz4.png</file>
+		<width>32</width>
+		<height>32</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\viz3.png</file>
+		<width>32</width>
+		<height>32</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\viz2.png</file>
+		<width>32</width>
+		<height>32</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
+
+	<image extension="png">
+		<mode>sprite</mode>
+		<file>images\\viz1.png</file>
+		<width>32</width>
+		<height>32</height>
+		<posx>0</posx>
+		<posy>0</posy>
+	</image>
 </animation>

@@ -48,7 +48,7 @@ public class OptionsState extends AbstractGameState {
 	 */
 	@Override
 	public void init() {
-		background = new ImageIcon("images\\full.png").getImage();
+		background = new ImageIcon("images\\menubg.png").getImage();
 		cursor = new ImageIcon("images\\cursor.png").getImage();
 
 		audioHandler = new AudioHandler(new AudioData("sounddata\\menu.txt"));

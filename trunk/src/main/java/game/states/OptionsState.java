@@ -21,8 +21,9 @@ import components.audio.AudioHandler;
 
 /**
  * A menü képernyõ.
+ * 
  * @author Ács Ádám
- *
+ * 
  */
 public class OptionsState extends AbstractGameState {
 	private GLabel level;
@@ -36,6 +37,7 @@ public class OptionsState extends AbstractGameState {
 
 	/**
 	 * beállítja a kiválasztó alapértelmezett helyét
+	 * 
 	 * @param game
 	 */
 	public OptionsState(BattleCity game) {
@@ -53,7 +55,8 @@ public class OptionsState extends AbstractGameState {
 
 		audioHandler = new AudioHandler(new AudioData("sounddata\\menu.txt"));
 
-		level = new GLabel(Integer.toString(currentLevel), new Vector2(330, 225));
+		level = new GLabel(Integer.toString(currentLevel),
+				new Vector2(330, 225));
 		level.setFont(new Font("Arial Bold", Font.PLAIN, 35));
 		level.setColor(Color.ORANGE);
 	}
@@ -68,15 +71,17 @@ public class OptionsState extends AbstractGameState {
 
 		int pos = 0;
 		switch (selection) {
-			case PLAYER1:
-				pos = 270;
-				break;
-			case PLAYER2:
-				pos = 310;
-				break;
-			case EXIT:
-				pos = 350;
-				break;
+		case PLAYER1:
+			pos = 270;
+			break;
+		case PLAYER2:
+			pos = 310;
+			break;
+		case EXIT:
+			pos = 350;
+			break;
+		default:
+			break;
 		}
 
 		g.drawImage(cursor, 170, pos, null);
@@ -103,52 +108,49 @@ public class OptionsState extends AbstractGameState {
 	 */
 	@Override
 	public void keyPressed(KeyboardInput keyboard) {
-			if (keyboard.keyDownOnce(KeyEvent.VK_ESCAPE)) {
+		if (keyboard.keyDownOnce(KeyEvent.VK_ESCAPE)) {
+			game.exit();
+		}
+
+		if (keyboard.keyDownOnce(KeyEvent.VK_DOWN)) {
+			selection = selection.getNext();
+		} else if (keyboard.keyDownOnce(KeyEvent.VK_UP)) {
+			selection = selection.getPrevious();
+		} else if (keyboard.keyDownOnce(KeyEvent.VK_SPACE)
+				|| keyboard.keyDown(KeyEvent.VK_ENTER)) {
+			switch (selection) {
+			case EXIT:
 				game.exit();
+				break;
+			case PLAYER1:
+				Config.currentLevel = currentLevel;
+				game.setState(game.getPlayState());
+				break;
+			case PLAYER2:
+				break;
 			}
+		}
 
-			if (keyboard.keyDownOnce(KeyEvent.VK_DOWN)) {
-				selection = selection.getNext();
-			}
-			else if (keyboard.keyDownOnce(KeyEvent.VK_UP)) {
-				selection = selection.getPrevious();
-			}
-			else if (keyboard.keyDownOnce(KeyEvent.VK_SPACE) || keyboard.keyDown(KeyEvent.VK_ENTER)) {
-				switch (selection) {
-					case EXIT:
-						game.exit();
-						break;
-					case PLAYER1:
-						Config.currentLevel = currentLevel;
-						game.setState(game.getPlayState());
-						break;
-					case PLAYER2:
-						break;
-				}
-			}
-
-			if (keyboard.keyDownOnce(KeyEvent.VK_LEFT)) {
-				currentLevel--;
-				currentLevel = MathHelper.clamp(currentLevel, 1, Config.MAX_LEVEL);
-			}
-			else if (keyboard.keyDownOnce(KeyEvent.VK_RIGHT)) {
-				currentLevel++;
-				currentLevel = MathHelper.clamp(currentLevel, 1, Config.MAX_LEVEL);
-			}
-			level.setString(Integer.toString(currentLevel));
+		if (keyboard.keyDownOnce(KeyEvent.VK_LEFT)) {
+			currentLevel--;
+			currentLevel = MathHelper.clamp(currentLevel, 1, Config.MAX_LEVEL);
+		} else if (keyboard.keyDownOnce(KeyEvent.VK_RIGHT)) {
+			currentLevel++;
+			currentLevel = MathHelper.clamp(currentLevel, 1, Config.MAX_LEVEL);
+		}
+		level.setString(Integer.toString(currentLevel));
 	}
 
 	private enum Selection {
-		PLAYER1,
-		PLAYER2,
-		EXIT;
+		PLAYER1, PLAYER2, EXIT;
 
 		public Selection getNext() {
 			return values()[(ordinal() + 1) % values().length];
 		}
 
 		public Selection getPrevious() {
-			return values()[ordinal() != 0 ? (ordinal() - 1) % values().length : values().length - 1];
+			return values()[ordinal() != 0 ? (ordinal() - 1) % values().length
+					: values().length - 1];
 		}
 	}
 }
